@@ -413,21 +413,46 @@
             font-size: 0.65rem;
             cursor: pointer;
             transition: all 0.2s;
-            padding: 5px 15px;
+            padding: 8px 5px;
+            border: 1px solid #e8ecf0;
+            /* Frame */
+            border-radius: 12px;
+            margin: 0 4px;
+            /* Gap */
+            flex: 1;
+            /* Distribute evenly */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
         }
 
         .nav-item.active {
             color: var(--primary-blue);
+            border-color: var(--primary-blue);
+            background: rgba(26, 75, 140, 0.04);
         }
 
         .nav-item:hover {
             color: var(--primary-blue);
+            background: #f8fafc;
+        }
+
+        .nav-item svg {
+            width: 24px;
+            height: 24px;
+            fill: #aaa;
+            margin-bottom: 4px;
+            transition: fill 0.2s;
+        }
+
+        .nav-item.active svg {
+            fill: var(--primary-blue);
         }
 
         .nav-item span {
-            font-size: 1.4rem;
             display: block;
-            margin-bottom: 4px;
         }
 
         .nav-item.active span {
@@ -1044,13 +1069,24 @@
         <!-- Bottom Navigation -->
         <nav class="bottom-nav">
             <div class="nav-item active" id="navHome" onclick="goTo('home')">
-                <span>🏠</span>หน้าหลัก
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z" />
+                </svg>
+                <span>หน้าหลัก</span>
             </div>
             <div class="nav-item" id="navPayoff" onclick="goTo('payoff')">
-                <span>💰</span>สินบนรางวัล
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05 1.18 1.91 2.53 1.91 1.29 0 2.13-.72 2.13-1.71 0-2.69-4.5-2.96-4.5-5.98 0-1.46 1.24-2.61 2.85-2.96V4h2.67v1.93c1.71.36 3.09 1.54 3.15 3.31h-2c-.13-1.04-1.06-1.64-2.22-1.64-1.11 0-2.01.62-2.01 1.65 0 2.74 4.5 3.1 4.5 6.02 0 1.4-1.04 2.49-2.72 2.78z" />
+                </svg>
+                <span>สินบนรางวัล</span>
             </div>
             <div class="nav-item" id="navCalc" onclick="goTo('calculate')">
-                <span>🧮</span>คำนวณค่าปรับ
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 14H7v-2h10v2zm0-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                </svg>
+                <span>คำนวณค่าปรับ</span>
             </div>
         </nav>
     </div>
