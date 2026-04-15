@@ -702,6 +702,11 @@
             color: #92400e;
         }
 
+        .status-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
         .error-box {
             background: #fef2f2;
             border: 1px solid #fecaca;
@@ -709,6 +714,132 @@
             padding: 20px;
             text-align: center;
             color: #991b1b;
+        }
+
+        /* Enhanced Payoff Result Styles */
+        .result-case-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 5px;
+        }
+
+        .result-case-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #1a5490 0%, #2d6cb5 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(26, 84, 144, 0.25);
+            flex-shrink: 0;
+        }
+
+        .result-case-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            letter-spacing: 0.5px;
+        }
+
+        .result-case-date {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        .result-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e0e7ef, transparent);
+            margin: 18px 0;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .result-grid-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #e8ecf0;
+            transition: all 0.2s;
+        }
+
+        .result-grid-item.emphasized {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 2px solid var(--primary-gold);
+            box-shadow: 0 2px 8px rgba(212, 160, 18, 0.15);
+        }
+
+        .result-grid-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .result-grid-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .result-grid-value.gold {
+            color: #b8860b;
+            font-size: 1.05rem;
+        }
+
+        .result-info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .result-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .result-info-row:last-child {
+            border-bottom: none;
+        }
+
+        .result-info-label {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .result-info-value {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            text-align: right;
+            max-width: 55%;
+        }
+
+        .result-status-section {
+            text-align: center;
+            margin-top: 18px;
+            padding-top: 15px;
+            border-top: 2px dashed #e8ecf0;
+        }
+
+        .result-status-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
         }
 
         .not-found {
@@ -948,7 +1079,7 @@
                     <form id="payoffForm">
                         <div class="form-group">
                             <label class="form-label">เลขคดี (Case No.)</label>
-                            <input type="number" id="caseNumber" class="form-input" placeholder="ระบุเลขคดี เช่น 1, 12"
+                            <input type="text" id="caseNumber" class="form-input" placeholder="ระบุเลขคดี เช่น 1, 12, น1"
                                 required>
                         </div>
                         <div class="form-group">
@@ -1155,9 +1286,20 @@
             }, 100);
         }
 
-        // Payoff System
-        const SHEET_ID = '1ZZqzLMXte_14iYxdHhYeLz3aqqieBwhk8ycKgCoPAYA';
-        const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+        // Payoff System - New Database
+        const SHEET_ID = '1x3s3JB_4_PWhZzI5YI4yap3AiBXhXI72';
+        const SHEET_GID = '24364949';
+        const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}`;
+
+        const THAI_MONTHS = ['', 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+            'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+        const CASE_OWNER_LABELS = ['สาขา', 'กรม', 'ภาค', 'พื้นที่', 'บูรณาการ', 'อื่นๆ'];
+        const CASE_TYPE_LABELS = ['สุรา', 'ยาสูบ', 'น้ำมัน', 'ไพ่', 'อื่นๆ'];
+
+        function getVal(row, idx) {
+            if (!row || !row.c || !row.c[idx]) return null;
+            return row.c[idx].v;
+        }
 
         document.getElementById('payoffForm').addEventListener('submit', async function (e) {
             e.preventDefault();
@@ -1173,7 +1315,13 @@
                 const text = await res.text();
                 const json = JSON.parse(text.substring(47).slice(0, -2));
                 const rows = json.table.rows;
-                const found = rows.find(r => r.c[0]?.v == caseNo && r.c[1]?.v == caseYear);
+                // Match column E (index 4) = case number, column F (index 5) = case year
+                const found = rows.find(r => {
+                    const cellE = getVal(r, 4);
+                    const cellF = getVal(r, 5);
+                    if (cellE === null || cellF === null) return false;
+                    return String(cellE).trim() == caseNo && String(cellF).trim() == caseYear;
+                });
                 renderPayoff(found, caseNo, caseYear);
             } catch (err) {
                 result.innerHTML = `<div class="error-box"><strong>เกิดข้อผิดพลาด</strong><br>${err.message}</div>`;
@@ -1189,18 +1337,99 @@
             if (!row) {
                 result.innerHTML = `<div class="not-found"><span>📄</span><h3>ไม่พบข้อมูล</h3><p>เลขคดี ${no}/${year}</p></div>`;
             } else {
-                const fine = row.c[2]?.v || 0;
-                const reward = row.c[3]?.v || 0;
-                const status = row.c[4]?.v ? String(row.c[4].v) : "รออัปเดต";
+                const fmt = n => {
+                    if (n === null || n === undefined) return '0.00';
+                    const s = String(n).replace(/,/g, '').trim();
+                    if (s === '-' || s === '') return '0.00';
+                    const num = parseFloat(s);
+                    return isNaN(num) ? '0.00' : num.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                };
+
+                // Case number & year (columns E=4, F=5)
+                const caseNoVal = getVal(row, 4) || no;
+                const caseYearVal = getVal(row, 5) || year;
+
+                // Date (columns B=1, C=2, D=3)
+                const day = getVal(row, 1);
+                const month = getVal(row, 2);
+                const yearVal = getVal(row, 3);
+                const monthIdx = parseInt(month);
+                const monthName = (monthIdx >= 1 && monthIdx <= 12) ? THAI_MONTHS[monthIdx] : month;
+                const dateStr = (day && month && yearVal) ? `${day} ${monthName} ${yearVal}` : '-';
+
+                // Financial (columns U=20, V=21, W=22)
+                const fine = getVal(row, 20);
+                const bounty = getVal(row, 21);
+                const reward = getVal(row, 22);
+
+                // Accuser (column X=23)
+                const accuser = getVal(row, 23) || '-';
+
+                // Case type from columns M-Q (12-16): สุรา, ยาสูบ, น้ำมัน, ไพ่, อื่นๆ
+                let caseTypes = [];
+                for (let i = 0; i < CASE_TYPE_LABELS.length; i++) {
+                    const val = getVal(row, 12 + i);
+                    if (val && String(val).includes('/')) caseTypes.push(CASE_TYPE_LABELS[i]);
+                }
+                const caseTypeStr = caseTypes.length > 0 ? caseTypes.join(', ') : '-';
+
+                // Case owner from columns G-L (6-11): สาขา, กรม, ภาค, พื้นที่, บูรณาการ, อื่นๆ
+                let caseOwners = [];
+                for (let i = 0; i < CASE_OWNER_LABELS.length; i++) {
+                    const val = getVal(row, 6 + i);
+                    if (val && String(val).includes('/')) caseOwners.push(CASE_OWNER_LABELS[i]);
+                }
+                const caseOwnerStr = caseOwners.length > 0 ? caseOwners.join(', ') : '-';
+
+                // Status (column AA=26)
+                const status = getVal(row, 26) ? String(getVal(row, 26)).trim() : 'รออัปเดต';
                 let statusClass = 'status-process';
-                if (status.includes("เงินสินบนรางวัลออกแล้ว")) statusClass = 'status-success';
-                else if (status.includes("ส่งเอกสาร")) statusClass = 'status-pending';
-                const fmt = n => n.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                if (status.includes('จ่ายครบ') || status.includes('อนุมัติ')) statusClass = 'status-success';
+                else if (status.includes('ส่งเข้าพื้นที่') || status.includes('ส่งคลัง')) statusClass = 'status-pending';
+                else if (status.includes('ฟ้องศาล') || status.includes('คดีไม่มีตัว')) statusClass = 'status-danger';
+
                 result.innerHTML = `
-                    <div class="result-row"><span class="result-label">เลขคดี / ปี</span><span class="result-value">${row.c[0]?.v} / ${row.c[1]?.v}</span></div>
-                    <div class="result-row"><span class="result-label">ค่าปรับสุทธิ</span><span class="result-value">${fmt(fine)} บาท</span></div>
-                    <div class="result-highlight"><span class="result-label">ยอดสินบนรางวัล</span><span class="result-value">${fmt(reward)} บาท</span></div>
-                    <div style="text-align:center;margin-top:15px;"><p class="result-label" style="margin-bottom:10px;">สถานะปัจจุบัน</p><span class="status-badge ${statusClass}">${status}</span></div>
+                    <div class="result-case-header">
+                        <div class="result-case-icon">📋</div>
+                        <div>
+                            <div class="result-case-title">คดีที่ ${caseNoVal}/${caseYearVal}</div>
+                            <div class="result-case-date">📅 ${dateStr}</div>
+                        </div>
+                    </div>
+                    <div class="result-divider"></div>
+                    <div class="result-grid">
+                        <div class="result-grid-item">
+                            <span class="result-grid-label">ค่าปรับสุทธิ</span>
+                            <span class="result-grid-value">${fmt(fine)} บาท</span>
+                        </div>
+                        <div class="result-grid-item emphasized">
+                            <span class="result-grid-label">💰 สินบน</span>
+                            <span class="result-grid-value gold">${fmt(bounty)} บาท</span>
+                        </div>
+                        <div class="result-grid-item emphasized">
+                            <span class="result-grid-label">🏆 รางวัล</span>
+                            <span class="result-grid-value gold">${fmt(reward)} บาท</span>
+                        </div>
+                    </div>
+                    <div class="result-divider"></div>
+                    <div class="result-info-list">
+                        <div class="result-info-row">
+                            <span class="result-info-label">👤 ผู้กล่าวโทษ</span>
+                            <span class="result-info-value">${accuser}</span>
+                        </div>
+                        <div class="result-info-row">
+                            <span class="result-info-label">📂 ประเภทคดี</span>
+                            <span class="result-info-value">${caseTypeStr}</span>
+                        </div>
+                        <div class="result-info-row">
+                            <span class="result-info-label">🏢 เจ้าของคดี</span>
+                            <span class="result-info-value">${caseOwnerStr}</span>
+                        </div>
+                    </div>
+                    <div class="result-status-section">
+                        <p class="result-status-label">⚡ สถานะสินบนรางวัล</p>
+                        <span class="status-badge ${statusClass}">${status}</span>
+                    </div>
                 `;
             }
             result.classList.add('show');
