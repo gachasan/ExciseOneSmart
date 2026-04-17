@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <style>
         :root {
             --primary-blue: #1a4b8c;
@@ -977,6 +980,501 @@
         .btn-loading .spinner {
             display: inline-block;
         }
+
+        /* ═══════ DASHBOARD SECTION STYLES ═══════ */
+
+        /* Dashboard Entry Card on Home */
+        .menu-single.dashboard-entry {
+            background: linear-gradient(135deg, #1a4b8c 0%, #0d3a6e 100%);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .menu-single.dashboard-entry::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(212,160,18,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .menu-single.dashboard-entry::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -20%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .menu-single.dashboard-entry .menu-icon {
+            background: linear-gradient(135deg, var(--primary-gold) 0%, #b8860b 100%);
+            box-shadow: 0 4px 15px rgba(212,160,18,0.35);
+        }
+        .menu-single.dashboard-entry .menu-title {
+            color: white;
+            font-size: 1.05rem;
+        }
+        .menu-single.dashboard-entry .menu-subtitle {
+            color: rgba(255,255,255,0.6);
+        }
+        .menu-single.dashboard-entry:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(26,75,140,0.4);
+            border-color: transparent;
+        }
+        .dashboard-arrow {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            margin-left: auto;
+            z-index: 1;
+            transition: transform 0.3s;
+        }
+        .menu-single.dashboard-entry:hover .dashboard-arrow {
+            transform: translateX(4px);
+        }
+
+        /* Dashboard Page Content */
+        .dash-section-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--secondary-gray);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        /* Dashboard Nav Buttons */
+        .dash-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+        .dash-nav-btn {
+            padding: 12px 8px;
+            border: 2px solid #e8ecf0;
+            border-radius: 14px;
+            background: white;
+            color: #888;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .dash-nav-btn .dash-btn-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        .dash-nav-btn:hover {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(26,75,140,0.12);
+        }
+        .dash-nav-btn:hover .dash-btn-icon { transform: scale(1.15); }
+        .dash-nav-btn.active {
+            background: linear-gradient(135deg, #1a5490 0%, #2d6cb5 100%);
+            border-color: var(--primary-blue);
+            color: white;
+            box-shadow: 0 4px 15px rgba(26,84,144,0.3);
+        }
+
+        /* Dashboard Filter Bar */
+        .dash-filter-bar {
+            background: white;
+            border: 2px solid #e8ecf0;
+            border-radius: 16px;
+            padding: 14px 16px;
+            margin-bottom: 18px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+        .dash-filter-group label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--secondary-gray);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .dash-filter-group select {
+            width: 100%;
+            padding: 10px 12px;
+            background: #f8fafc;
+            border: 2px solid #e8ecf0;
+            border-radius: 10px;
+            color: #333;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.85rem;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 30px;
+        }
+        .dash-filter-group select:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(26,75,140,0.1);
+        }
+
+        /* Dashboard Main Grid */
+        .dash-main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        /* Dashboard Stat Card */
+        .dash-stat-card {
+            background: white;
+            border: 2px solid #e8ecf0;
+            border-radius: 20px;
+            padding: 22px 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        .dash-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-gold));
+        }
+        .dash-stat-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--secondary-gray);
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+        .dash-stat-subtitle {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 500;
+            min-height: 1.2em;
+        }
+        .dash-stat-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e8ecf0, transparent);
+            margin: 16px 0;
+        }
+        .dash-stat-big {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #333;
+            letter-spacing: 0.02em;
+        }
+        .dash-stat-big .num-hl {
+            color: var(--primary-blue);
+        }
+        .dash-stat-big .num-sep {
+            font-size: 0.45em;
+            color: #ccc;
+        }
+        .dash-stat-big .num-total {
+            color: #bbb;
+        }
+        .dash-stat-total {
+            font-size: 0.7rem;
+            color: var(--secondary-gray);
+            margin-top: 4px;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+        .dash-bar-wrap {
+            margin-top: 14px;
+        }
+        .dash-bar-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+        .dash-bar-label {
+            font-size: 0.75rem;
+            color: #999;
+        }
+        .dash-bar-pct {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        .dash-bar-bg {
+            height: 6px;
+            background: #e8ecf0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .dash-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-gold));
+            border-radius: 6px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dash-stat-helper {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 14px;
+        }
+
+        /* Dashboard Chart Card */
+        .dash-chart-card {
+            background: white;
+            border: 2px solid #e8ecf0;
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        .dash-chart-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--primary-blue));
+        }
+        .dash-chart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .dash-chart-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: var(--secondary-gray);
+            text-transform: uppercase;
+        }
+        .dash-chart-badge {
+            background: #f0f4fa;
+            border: 1px solid #d0daea;
+            border-radius: 6px;
+            padding: 3px 10px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            letter-spacing: 0.06em;
+        }
+        .dash-chart-container {
+            position: relative;
+            min-height: 260px;
+        }
+        .dash-chart-empty {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            opacity: 0.4;
+        }
+        .dash-chart-empty-icon {
+            font-size: 2.2rem;
+        }
+        .dash-chart-empty-text {
+            font-size: 0.8rem;
+            color: #999;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Dashboard Table */
+        .dash-table-section {
+            background: white;
+            border: 2px solid #e8ecf0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            margin-bottom: 20px;
+        }
+        .dash-table-header {
+            padding: 16px 18px;
+            border-bottom: 2px solid #e8ecf0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .dash-table-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--secondary-gray);
+            text-transform: uppercase;
+        }
+        .dash-table-count {
+            background: linear-gradient(135deg, #1a5490 0%, #2d6cb5 100%);
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        .dash-table-wrapper {
+            overflow-x: auto;
+        }
+        .dash-table-wrapper table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.78rem;
+            min-width: 400px;
+        }
+        .dash-table-wrapper thead th {
+            padding: 10px 12px;
+            text-align: left;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--secondary-gray);
+            text-transform: uppercase;
+            background: #f8fafc;
+            border-bottom: 2px solid #e8ecf0;
+            white-space: nowrap;
+        }
+        .dash-table-wrapper tbody td {
+            padding: 11px 12px;
+            border-bottom: 1px solid #f0f4f8;
+            color: #555;
+            vertical-align: middle;
+        }
+        .dash-table-wrapper tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .dash-table-wrapper tbody tr:hover {
+            background: #f8fafc;
+        }
+        .dash-cell-idx {
+            font-size: 0.7rem;
+            color: #bbb;
+            text-align: center;
+            font-weight: 600;
+        }
+        .dash-cell-case {
+            font-weight: 600;
+            color: var(--primary-blue);
+            letter-spacing: 0.02em;
+        }
+        .dash-cell-owner {
+            font-weight: 600;
+            color: #333;
+        }
+        .dash-type-chip {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            border: 1px solid;
+        }
+        .dash-type-สุรา    { color: #6c5ce7; border-color: rgba(108,92,231,0.3); background: rgba(108,92,231,0.08); }
+        .dash-type-ยาสูบ   { color: #0984e3; border-color: rgba(9,132,227,0.3); background: rgba(9,132,227,0.08); }
+        .dash-type-น้ำมัน  { color: #e17055; border-color: rgba(225,112,85,0.3); background: rgba(225,112,85,0.08); }
+        .dash-type-ไพ่    { color: #d63031; border-color: rgba(214,48,49,0.3); background: rgba(214,48,49,0.08); }
+        .dash-type-อื่นๆ  { color: #888; border-color: #ddd; background: #f8f8f8; }
+        .dash-status-chip {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.68rem;
+            font-weight: 500;
+            background: #f0f4fa;
+            color: #666;
+            border: 1px solid #d0daea;
+        }
+
+        /* Dashboard Pagination */
+        .dash-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            padding: 14px;
+            border-top: 1px solid #e8ecf0;
+            flex-wrap: wrap;
+        }
+        .dash-page-btn {
+            width: 32px; height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #e8ecf0;
+            background: white;
+            color: #888;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .dash-page-btn:hover {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+        }
+        .dash-page-btn.active {
+            background: linear-gradient(135deg, #1a5490 0%, #2d6cb5 100%);
+            border-color: var(--primary-blue);
+            color: white;
+            font-weight: 700;
+        }
+
+        /* Dashboard loading overlay */
+        .dash-loading {
+            position: fixed;
+            inset: 0;
+            background: rgba(232,240,250,0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            gap: 14px;
+            transition: opacity 0.5s ease;
+        }
+        .dash-loader-ring {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            border: 3px solid #e8ecf0;
+            border-top-color: var(--primary-blue);
+            animation: spin 0.9s linear infinite;
+        }
+        .dash-loader-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--secondary-gray);
+            letter-spacing: 0.12em;
+        }
+
+        /* Dashboard entry animations */
+        @keyframes dashFadeUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        #dashboardPage .dash-nav-grid     { animation: dashFadeUp 0.5s ease both; animation-delay: 0.05s; }
+        #dashboardPage .dash-filter-bar   { animation: dashFadeUp 0.5s ease both; animation-delay: 0.1s; }
+        #dashboardPage .dash-main-grid    { animation: dashFadeUp 0.5s ease both; animation-delay: 0.15s; }
+        #dashboardPage .dash-table-section { animation: dashFadeUp 0.5s ease both; animation-delay: 0.2s; }
     </style>
 </head>
 
@@ -1060,6 +1558,15 @@
                         <div class="menu-subtitle">Complaint</div>
                     </div>
                 </div>
+                <!-- Dashboard Entry Card -->
+                <div class="menu-single dashboard-entry" onclick="goTo('dashboard')">
+                    <div class="menu-icon">📊</div>
+                    <div class="menu-single-text">
+                        <div class="menu-title">Dashboard สินบนรางวัล</div>
+                        <div class="menu-subtitle">Reward Intelligence Dashboard</div>
+                    </div>
+                    <span class="dashboard-arrow">➜</span>
+                </div>
             </div>
         </div>
 
@@ -1079,8 +1586,8 @@
                     <form id="payoffForm">
                         <div class="form-group">
                             <label class="form-label">เลขคดี (Case No.)</label>
-                            <input type="text" id="caseNumber" class="form-input" placeholder="ระบุเลขคดี เช่น 1, 12, น1"
-                                required>
+                            <input type="text" id="caseNumber" class="form-input"
+                                placeholder="ระบุเลขคดี เช่น 1, 12, น1" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">ปี พ.ศ. ของคดี</label>
@@ -1094,6 +1601,128 @@
                     </form>
                 </div>
                 <div id="payoffResult" class="result-card"></div>
+            </div>
+        </div>
+
+        <!-- DASHBOARD PAGE -->
+        <div id="dashboardPage" class="page">
+            <header class="page-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Logo_of_the_Excise_Department.svg"
+                    alt="Logo" class="header-logo">
+                <div>
+                    <h2>📊 Dashboard สินบนรางวัล</h2>
+                    <p>ระบบวิเคราะห์ข้อมูลคดีแบบ Real-time</p>
+                </div>
+            </header>
+            <div class="content-area">
+                <!-- Dashboard Loading -->
+                <div id="dashLoadingOverlay" class="dash-loading" style="display:none;">
+                    <div class="dash-loader-ring"></div>
+                    <div class="dash-loader-text">กำลังโหลดข้อมูล...</div>
+                </div>
+
+                <!-- Nav Buttons -->
+                <div class="dash-section-label">⬡ เลือกมุมมองการวิเคราะห์</div>
+                <div class="dash-nav-grid">
+                    <button id="dash-btn-owner" class="dash-nav-btn" onclick="dashToggleMode('owner')">
+                        <span class="dash-btn-icon">👤</span>
+                        <span>เจ้าของคดี</span>
+                    </button>
+                    <button id="dash-btn-type" class="dash-nav-btn" onclick="dashToggleMode('type')">
+                        <span class="dash-btn-icon">📦</span>
+                        <span>ประเภทคดี</span>
+                    </button>
+                    <button id="dash-btn-status" class="dash-nav-btn" onclick="dashToggleMode('status')">
+                        <span class="dash-btn-icon">💰</span>
+                        <span>สถานะรางวัล</span>
+                    </button>
+                </div>
+
+                <!-- Filters -->
+                <div class="dash-filter-bar">
+                    <div class="dash-filter-group">
+                        <label>เจาะจงเจ้าของคดี</label>
+                        <select id="dashOwnerFilter" onchange="dashProcessAndDisplay()"><option value="all">— ทั้งหมด —</option></select>
+                    </div>
+                    <div class="dash-filter-group">
+                        <label>เจาะจงประเภทคดี</label>
+                        <select id="dashTypeFilter" onchange="dashProcessAndDisplay()"><option value="all">— ทั้งหมด —</option></select>
+                    </div>
+                    <div class="dash-filter-group">
+                        <label>เจาะจงสถานะ</label>
+                        <select id="dashStatusFilter" onchange="dashProcessAndDisplay()"><option value="all">— ทั้งหมด —</option></select>
+                    </div>
+                </div>
+
+                <!-- Main Grid: Stat + Chart -->
+                <div class="dash-main-grid">
+                    <!-- Stat Card -->
+                    <div class="dash-stat-card">
+                        <div>
+                            <div class="dash-stat-label">ผลลัพธ์ที่เลือก</div>
+                            <div class="dash-stat-subtitle" id="dashDisplayLabel">ข้อมูลทั้งหมด</div>
+                        </div>
+                        <div>
+                            <div class="dash-stat-divider"></div>
+                            <div>
+                                <div class="dash-stat-big">
+                                    <span class="num-hl" id="dashCountMatch">0</span>
+                                    <span class="num-sep">&nbsp;/&nbsp;</span>
+                                    <span class="num-total" id="dashCountTotal">0</span>
+                                </div>
+                                <div class="dash-stat-total">คดีที่ตรงเงื่อนไข / ทั้งหมด</div>
+                            </div>
+                            <div class="dash-bar-wrap">
+                                <div class="dash-bar-header">
+                                    <span class="dash-bar-label">สัดส่วนจากทั้งหมด</span>
+                                    <span class="dash-bar-pct" id="dashPercentDisplay">0%</span>
+                                </div>
+                                <div class="dash-bar-bg">
+                                    <div class="dash-bar-fill" id="dashStatBarFill" style="width:0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dash-stat-helper" id="dashHelperText">เลือกปุ่มวิเคราะห์ด้านบน หรือใช้ฟิลเตอร์เพื่อกรองข้อมูล</div>
+                    </div>
+
+                    <!-- Chart Card -->
+                    <div class="dash-chart-card">
+                        <div class="dash-chart-header">
+                            <div class="dash-chart-title">การวิเคราะห์แบบกราฟ</div>
+                            <div class="dash-chart-badge" id="dashChartModeBadge">— เลือกมุมมอง —</div>
+                        </div>
+                        <div class="dash-chart-container">
+                            <div class="dash-chart-empty" id="dashChartEmpty">
+                                <div class="dash-chart-empty-icon">◎</div>
+                                <div class="dash-chart-empty-text">เลือกหัวข้อหรือฟิลเตอร์<br>เพื่อแสดงกราฟวิเคราะห์</div>
+                            </div>
+                            <canvas id="dashMainChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="dash-table-section">
+                    <div class="dash-table-header">
+                        <div class="dash-table-title">📂 รายการคดีที่เลือก</div>
+                        <div class="dash-table-count"><span id="dashListCount">0</span> คดี</div>
+                    </div>
+                    <div class="dash-table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width:40px; text-align:center;">#</th>
+                                    <th>เลขที่คดี / ปี</th>
+                                    <th>เจ้าของคดี</th>
+                                    <th>ประเภท</th>
+                                    <th>สถานะ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dashDataTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div id="dashPagination" class="dash-pagination"></div>
+                </div>
             </div>
         </div>
 
@@ -1212,6 +1841,12 @@
                 </svg>
                 <span>สินบนรางวัล</span>
             </div>
+            <div class="nav-item" id="navDashboard" onclick="goTo('dashboard')">
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
+                </svg>
+                <span>Dashboard</span>
+            </div>
             <div class="nav-item" id="navCalc" onclick="goTo('calculate')">
                 <svg viewBox="0 0 24 24">
                     <path
@@ -1245,6 +1880,10 @@
             } else if (page === 'calculate') {
                 document.getElementById('calculatePage').classList.add('active');
                 document.getElementById('navCalc').classList.add('active');
+            } else if (page === 'dashboard') {
+                document.getElementById('dashboardPage').classList.add('active');
+                document.getElementById('navDashboard').classList.add('active');
+                if (!dashDataLoaded) dashFetchData();
             }
             window.scrollTo(0, 0);
         }
@@ -1620,6 +2259,268 @@
                 if (currentSlide === 0) updateSlide(originalTotalSlides - 1);
                 else updateSlide(currentSlide - 1);
             }
+        }
+
+        // ═══════════════════════════════════════════════════
+        // DASHBOARD MODULE
+        // ═══════════════════════════════════════════════════
+        const DASH_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTvYseBt44Iprj9xV-nJZpTgGEhTsKQHliLwJpEk1MBcsX2SRMNABiFEVNjx70QVw/pub?output=csv';
+
+        let dashRawData = [];
+        let dashFilteredData = [];
+        let dashChart = null;
+        let dashCurrentMode = null;
+        let dashCurrentPage = 1;
+        const dashRowsPerPage = 10;
+        let dashDataLoaded = false;
+
+        // Register ChartDataLabels if available
+        if (typeof ChartDataLabels !== 'undefined') {
+            Chart.register(ChartDataLabels);
+        }
+
+        function dashCleanStatus(text) {
+            if (!text || text.trim() === "" || text === "-") return "ไม่ระบุสถานะ";
+            let cleaned = text.replace(/\s+/g, '').trim();
+            cleaned = cleaned.replace(/([\u0E31\u0E34-\u0E37\u0E48-\u0E4C])\1+/g, '$1');
+            if (cleaned.includes("พื้นที่")) return "ส่งเข้าพื้นที่";
+            if (cleaned.includes("คลัง") || cleaned.includes("เปอเซ็น")) return "ส่งคลัง 100%";
+            return cleaned;
+        }
+
+        function dashGetOwnerLabel(row) {
+            if (row[6] === '/') return 'สาขา';
+            if (row[7] === '/') return 'กรม';
+            if (row[8] === '/') return 'ภาค';
+            if (row[9] === '/') return 'พื้นที่';
+            if (row[10] === '/') return 'บูรณาการ';
+            return 'อื่นๆ';
+        }
+
+        function dashGetTypeLabel(row) {
+            if (row[12] === '/') return 'สุรา';
+            if (row[13] === '/') return 'ยาสูบ';
+            if (row[14] === '/') return 'น้ำมัน';
+            if (row[15] === '/') return 'ไพ่';
+            return 'อื่นๆ';
+        }
+
+        function dashFetchData() {
+            const overlay = document.getElementById('dashLoadingOverlay');
+            overlay.style.display = 'flex';
+            Papa.parse(DASH_CSV_URL, {
+                download: true,
+                header: false,
+                complete: function(results) {
+                    dashRawData = results.data.slice(4).filter(row => row[4] && row[4].trim() !== "");
+                    dashSetupFilters(dashRawData);
+                    dashProcessAndDisplay();
+                    overlay.style.opacity = '0';
+                    setTimeout(() => overlay.style.display = 'none', 500);
+                    dashDataLoaded = true;
+                }
+            });
+        }
+
+        function dashSetupFilters(data) {
+            const owners = new Set(), types = new Set(), statuses = new Set();
+            data.forEach(row => {
+                owners.add(dashGetOwnerLabel(row));
+                types.add(dashGetTypeLabel(row));
+                statuses.add(dashCleanStatus(row[26]));
+            });
+            dashPopulateSelect('dashOwnerFilter', owners);
+            dashPopulateSelect('dashTypeFilter', types);
+            dashPopulateSelect('dashStatusFilter', statuses);
+        }
+
+        function dashPopulateSelect(id, set) {
+            const select = document.getElementById(id);
+            select.innerHTML = '<option value="all">— ทั้งหมด —</option>';
+            Array.from(set).sort().forEach(val => select.add(new Option(val, val)));
+        }
+
+        function dashToggleMode(mode) {
+            dashCurrentMode = (dashCurrentMode === mode) ? null : mode;
+            document.querySelectorAll('.dash-nav-btn').forEach(b => b.classList.remove('active'));
+            if (dashCurrentMode) document.getElementById(`dash-btn-${dashCurrentMode}`).classList.add('active');
+            dashProcessAndDisplay();
+        }
+
+        function dashAnimateValue(el, from, to) {
+            const duration = 600;
+            const start = performance.now();
+            function step(now) {
+                const p = Math.min((now - start) / duration, 1);
+                const ease = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.round(from + (to - from) * ease).toLocaleString();
+                if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
+        function dashProcessAndDisplay() {
+            const fOwner  = document.getElementById('dashOwnerFilter').value;
+            const fType   = document.getElementById('dashTypeFilter').value;
+            const fStatus = document.getElementById('dashStatusFilter').value;
+            const isFilterActive = (fOwner !== 'all' || fType !== 'all' || fStatus !== 'all');
+
+            dashFilteredData = dashRawData.filter(row => {
+                return (fOwner  === 'all' || dashGetOwnerLabel(row) === fOwner)
+                    && (fType   === 'all' || dashGetTypeLabel(row)  === fType)
+                    && (fStatus === 'all' || dashCleanStatus(row[26]) === fStatus);
+            });
+
+            const total = dashRawData.length;
+            const match = dashFilteredData.length;
+            const pct   = total > 0 ? Math.round(match / total * 100) : 0;
+
+            const elMatch = document.getElementById('dashCountMatch');
+            const elTotal = document.getElementById('dashCountTotal');
+            dashAnimateValue(elMatch, parseInt(elMatch.textContent.replace(/,/g,'')) || 0, match);
+            dashAnimateValue(elTotal, parseInt(elTotal.textContent.replace(/,/g,'')) || 0, total);
+            document.getElementById('dashPercentDisplay').textContent = pct + '%';
+            document.getElementById('dashStatBarFill').style.width = pct + '%';
+            document.getElementById('dashListCount').textContent = match.toLocaleString();
+
+            const modeNames = { owner: 'เจ้าของคดี', type: 'ประเภทคดี', status: 'สถานะเงินรางวัล' };
+            document.getElementById('dashDisplayLabel').textContent =
+                dashCurrentMode ? `แบ่งตาม${modeNames[dashCurrentMode]}` : (isFilterActive ? 'ผลลัพธ์ที่กรอง' : 'ข้อมูลทั้งหมด');
+            document.getElementById('dashHelperText').textContent =
+                match === 0 ? 'ไม่พบข้อมูลที่ตรงเงื่อนไข' : `แสดง ${match.toLocaleString()} คดีจาก ${total.toLocaleString()} คดีทั้งหมด`;
+
+            dashCurrentPage = 1;
+            dashRenderTable();
+
+            // CHART
+            const modeLabels = { owner: 'เจ้าของคดี', type: 'ประเภทคดี', status: 'สถานะ' };
+            document.getElementById('dashChartModeBadge').textContent =
+                dashCurrentMode ? `วิเคราะห์ · ${modeLabels[dashCurrentMode]}` : (isFilterActive ? 'เปรียบเทียบ' : '— เลือกมุมมอง —');
+
+            const showEmpty = !dashCurrentMode && !isFilterActive;
+            document.getElementById('dashChartEmpty').style.display = showEmpty ? 'flex' : 'none';
+            document.getElementById('dashMainChart').style.display  = showEmpty ? 'none' : 'block';
+
+            if (!showEmpty) {
+                let chartData = {};
+                if (!dashCurrentMode && isFilterActive) {
+                    chartData = { 'ที่เลือก': match, 'อื่นๆ': total - match };
+                    dashRenderChart(Object.keys(chartData), Object.values(chartData), true);
+                } else {
+                    dashFilteredData.forEach(row => {
+                        const key = dashCurrentMode === 'owner' ? dashGetOwnerLabel(row)
+                                  : dashCurrentMode === 'type'  ? dashGetTypeLabel(row)
+                                  : dashCleanStatus(row[26]);
+                        chartData[key] = (chartData[key] || 0) + 1;
+                    });
+                    const sorted = Object.entries(chartData).sort((a,b) => b[1]-a[1]);
+                    dashRenderChart(sorted.map(e=>e[0]), sorted.map(e=>e[1]), false);
+                }
+            } else {
+                if (dashChart) { dashChart.destroy(); dashChart = null; }
+            }
+        }
+
+        function dashRenderTable() {
+            const tbody = document.getElementById('dashDataTableBody');
+            const pager = document.getElementById('dashPagination');
+            tbody.innerHTML = '';
+            pager.innerHTML = '';
+
+            const total = dashFilteredData.length;
+            const totalPages = Math.ceil(total / dashRowsPerPage);
+            const start = (dashCurrentPage - 1) * dashRowsPerPage;
+            const pageData = dashFilteredData.slice(start, start + dashRowsPerPage);
+
+            if (!pageData.length) {
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;padding:28px;color:#bbb;font-size:0.8rem;">ไม่พบข้อมูล</td></tr>`;
+                return;
+            }
+
+            pageData.forEach((row, i) => {
+                const tr = document.createElement('tr');
+                const idx = start + i + 1;
+                const caseNum = `${row[4]||'–'}/${row[5]||'–'}`;
+                const type = dashGetTypeLabel(row);
+                const owner = dashGetOwnerLabel(row);
+                tr.innerHTML = `
+                    <td class="dash-cell-idx">${idx}</td>
+                    <td class="dash-cell-case">${caseNum}</td>
+                    <td class="dash-cell-owner">${owner}</td>
+                    <td><span class="dash-type-chip dash-type-${type}">${type}</span></td>
+                    <td><span class="dash-status-chip">${dashCleanStatus(row[26])}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            if (totalPages > 1) {
+                for (let i = 1; i <= totalPages; i++) {
+                    const btn = document.createElement('button');
+                    btn.textContent = i;
+                    btn.className = `dash-page-btn${i === dashCurrentPage ? ' active' : ''}`;
+                    btn.onclick = () => {
+                        dashCurrentPage = i;
+                        dashRenderTable();
+                        document.querySelector('.dash-table-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    };
+                    pager.appendChild(btn);
+                }
+            }
+        }
+
+        function dashRenderChart(labels, values, isComparison) {
+            const ctx = document.getElementById('dashMainChart').getContext('2d');
+            if (dashChart) dashChart.destroy();
+
+            const palette = ['#1a5490','#d4a012','#2d6cb5','#e17055','#00b894','#6c5ce7','#fdcb6e'];
+            const colors = isComparison ? ['#1a5490','#e8ecf0'] : palette;
+
+            dashChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels,
+                    datasets: [{
+                        data: values,
+                        backgroundColor: colors,
+                        borderColor: '#ffffff',
+                        borderWidth: 3,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: { padding: 20 },
+                    animation: { duration: 700, easing: 'easeOutQuart' },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 10,
+                                boxHeight: 10,
+                                borderRadius: 3,
+                                useBorderRadius: true,
+                                color: '#666',
+                                font: { family: "'Prompt', sans-serif", size: 11 },
+                                padding: 14
+                            }
+                        },
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'end',
+                            offset: 6,
+                            color: (ctx) => ctx.dataset.backgroundColor[ctx.dataIndex],
+                            font: { weight: '700', size: 11, family: "'Prompt', sans-serif" },
+                            formatter: (value, ctx) => {
+                                const sum = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                const p = Math.round(value * 100 / sum);
+                                return p > 0 ? p + '%' : '';
+                            }
+                        }
+                    },
+                    cutout: isComparison ? '72%' : '42%'
+                }
+            });
         }
     </script>
 </body>
