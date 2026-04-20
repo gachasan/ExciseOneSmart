@@ -990,6 +990,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .menu-single.dashboard-entry::before {
             content: '';
             position: absolute;
@@ -997,9 +998,10 @@
             right: -30%;
             width: 120px;
             height: 120px;
-            background: radial-gradient(circle, rgba(212,160,18,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(212, 160, 18, 0.15) 0%, transparent 70%);
             pointer-events: none;
         }
+
         .menu-single.dashboard-entry::after {
             content: '';
             position: absolute;
@@ -1007,25 +1009,30 @@
             left: -20%;
             width: 100px;
             height: 100px;
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
             pointer-events: none;
         }
+
         .menu-single.dashboard-entry .menu-icon {
             background: linear-gradient(135deg, var(--primary-gold) 0%, #b8860b 100%);
-            box-shadow: 0 4px 15px rgba(212,160,18,0.35);
+            box-shadow: 0 4px 15px rgba(212, 160, 18, 0.35);
         }
+
         .menu-single.dashboard-entry .menu-title {
             color: white;
             font-size: 1.05rem;
         }
+
         .menu-single.dashboard-entry .menu-subtitle {
-            color: rgba(255,255,255,0.6);
+            color: rgba(255, 255, 255, 0.6);
         }
+
         .menu-single.dashboard-entry:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(26,75,140,0.4);
+            box-shadow: 0 12px 35px rgba(26, 75, 140, 0.4);
             border-color: transparent;
         }
+
         .dashboard-arrow {
             color: var(--primary-gold);
             font-size: 1.2rem;
@@ -1033,6 +1040,7 @@
             z-index: 1;
             transition: transform 0.3s;
         }
+
         .menu-single.dashboard-entry:hover .dashboard-arrow {
             transform: translateX(4px);
         }
@@ -1054,6 +1062,7 @@
             gap: 8px;
             margin-bottom: 18px;
         }
+
         .dash-nav-btn {
             padding: 12px 8px;
             border: 2px solid #e8ecf0;
@@ -1069,24 +1078,30 @@
             flex-direction: column;
             align-items: center;
             gap: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
+
         .dash-nav-btn .dash-btn-icon {
             font-size: 1.2rem;
             transition: transform 0.3s ease;
         }
+
         .dash-nav-btn:hover {
             border-color: var(--primary-blue);
             color: var(--primary-blue);
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(26,75,140,0.12);
+            box-shadow: 0 6px 18px rgba(26, 75, 140, 0.12);
         }
-        .dash-nav-btn:hover .dash-btn-icon { transform: scale(1.15); }
+
+        .dash-nav-btn:hover .dash-btn-icon {
+            transform: scale(1.15);
+        }
+
         .dash-nav-btn.active {
             background: linear-gradient(135deg, #1a5490 0%, #2d6cb5 100%);
             border-color: var(--primary-blue);
             color: white;
-            box-shadow: 0 4px 15px rgba(26,84,144,0.3);
+            box-shadow: 0 4px 15px rgba(26, 84, 144, 0.3);
         }
 
         /* Dashboard Filter Bar */
@@ -1099,8 +1114,9 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
         }
+
         .dash-filter-group label {
             display: block;
             font-size: 0.7rem;
@@ -1110,6 +1126,7 @@
             text-transform: uppercase;
             margin-bottom: 5px;
         }
+
         .dash-filter-group select {
             width: 100%;
             padding: 10px 12px;
@@ -1129,9 +1146,10 @@
             background-position: right 10px center;
             padding-right: 30px;
         }
+
         .dash-filter-group select:focus {
             border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(26,75,140,0.1);
+            box-shadow: 0 0 0 3px rgba(26, 75, 140, 0.1);
         }
 
         /* Dashboard Main Grid */
@@ -1148,17 +1166,21 @@
             border: 2px solid #e8ecf0;
             border-radius: 20px;
             padding: 22px 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
             position: relative;
             overflow: hidden;
         }
+
         .dash-stat-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 3px;
             background: linear-gradient(90deg, var(--primary-blue), var(--primary-gold));
         }
+
         .dash-stat-label {
             font-size: 0.65rem;
             font-weight: 600;
@@ -1167,17 +1189,20 @@
             text-transform: uppercase;
             margin-bottom: 3px;
         }
+
         .dash-stat-subtitle {
             font-size: 0.85rem;
             color: #666;
             font-weight: 500;
             min-height: 1.2em;
         }
+
         .dash-stat-divider {
             height: 1px;
             background: linear-gradient(90deg, transparent, #e8ecf0, transparent);
             margin: 16px 0;
         }
+
         .dash-stat-big {
             font-size: 2.5rem;
             font-weight: 700;
@@ -1185,16 +1210,20 @@
             color: #333;
             letter-spacing: 0.02em;
         }
+
         .dash-stat-big .num-hl {
             color: var(--primary-blue);
         }
+
         .dash-stat-big .num-sep {
             font-size: 0.45em;
             color: #ccc;
         }
+
         .dash-stat-big .num-total {
             color: #bbb;
         }
+
         .dash-stat-total {
             font-size: 0.7rem;
             color: var(--secondary-gray);
@@ -1202,35 +1231,42 @@
             letter-spacing: 0.05em;
             font-weight: 600;
         }
+
         .dash-bar-wrap {
             margin-top: 14px;
         }
+
         .dash-bar-header {
             display: flex;
             justify-content: space-between;
             margin-bottom: 6px;
         }
+
         .dash-bar-label {
             font-size: 0.75rem;
             color: #999;
         }
+
         .dash-bar-pct {
             font-size: 0.9rem;
             font-weight: 700;
             color: var(--primary-blue);
         }
+
         .dash-bar-bg {
             height: 6px;
             background: #e8ecf0;
             border-radius: 6px;
             overflow: hidden;
         }
+
         .dash-bar-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--primary-blue), var(--primary-gold));
             border-radius: 6px;
             transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .dash-stat-helper {
             font-size: 0.75rem;
             color: #999;
@@ -1243,23 +1279,28 @@
             border: 2px solid #e8ecf0;
             border-radius: 20px;
             padding: 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
             position: relative;
             overflow: hidden;
         }
+
         .dash-chart-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 3px;
             background: linear-gradient(90deg, var(--primary-gold), var(--primary-blue));
         }
+
         .dash-chart-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 10px;
         }
+
         .dash-chart-title {
             font-size: 0.7rem;
             font-weight: 600;
@@ -1267,6 +1308,7 @@
             color: var(--secondary-gray);
             text-transform: uppercase;
         }
+
         .dash-chart-badge {
             background: #f0f4fa;
             border: 1px solid #d0daea;
@@ -1277,10 +1319,12 @@
             color: var(--primary-blue);
             letter-spacing: 0.06em;
         }
+
         .dash-chart-container {
             position: relative;
             min-height: 260px;
         }
+
         .dash-chart-empty {
             position: absolute;
             inset: 0;
@@ -1291,9 +1335,11 @@
             gap: 10px;
             opacity: 0.4;
         }
+
         .dash-chart-empty-icon {
             font-size: 2.2rem;
         }
+
         .dash-chart-empty-text {
             font-size: 0.8rem;
             color: #999;
@@ -1307,9 +1353,10 @@
             border: 2px solid #e8ecf0;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
             margin-bottom: 20px;
         }
+
         .dash-table-header {
             padding: 16px 18px;
             border-bottom: 2px solid #e8ecf0;
@@ -1317,6 +1364,7 @@
             align-items: center;
             justify-content: space-between;
         }
+
         .dash-table-title {
             font-size: 0.75rem;
             font-weight: 600;
@@ -1324,6 +1372,7 @@
             color: var(--secondary-gray);
             text-transform: uppercase;
         }
+
         .dash-table-count {
             background: linear-gradient(135deg, #1a5490 0%, #2d6cb5 100%);
             border-radius: 20px;
@@ -1332,15 +1381,18 @@
             font-weight: 700;
             color: white;
         }
+
         .dash-table-wrapper {
             overflow-x: auto;
         }
+
         .dash-table-wrapper table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.78rem;
             min-width: 400px;
         }
+
         .dash-table-wrapper thead th {
             padding: 10px 12px;
             text-align: left;
@@ -1353,33 +1405,40 @@
             border-bottom: 2px solid #e8ecf0;
             white-space: nowrap;
         }
+
         .dash-table-wrapper tbody td {
             padding: 11px 12px;
             border-bottom: 1px solid #f0f4f8;
             color: #555;
             vertical-align: middle;
         }
+
         .dash-table-wrapper tbody tr:last-child td {
             border-bottom: none;
         }
+
         .dash-table-wrapper tbody tr:hover {
             background: #f8fafc;
         }
+
         .dash-cell-idx {
             font-size: 0.7rem;
             color: #bbb;
             text-align: center;
             font-weight: 600;
         }
+
         .dash-cell-case {
             font-weight: 600;
             color: var(--primary-blue);
             letter-spacing: 0.02em;
         }
+
         .dash-cell-owner {
             font-weight: 600;
             color: #333;
         }
+
         .dash-type-chip {
             display: inline-block;
             padding: 2px 10px;
@@ -1388,11 +1447,37 @@
             font-weight: 600;
             border: 1px solid;
         }
-        .dash-type-สุรา    { color: #6c5ce7; border-color: rgba(108,92,231,0.3); background: rgba(108,92,231,0.08); }
-        .dash-type-ยาสูบ   { color: #0984e3; border-color: rgba(9,132,227,0.3); background: rgba(9,132,227,0.08); }
-        .dash-type-น้ำมัน  { color: #e17055; border-color: rgba(225,112,85,0.3); background: rgba(225,112,85,0.08); }
-        .dash-type-ไพ่    { color: #d63031; border-color: rgba(214,48,49,0.3); background: rgba(214,48,49,0.08); }
-        .dash-type-อื่นๆ  { color: #888; border-color: #ddd; background: #f8f8f8; }
+
+        .dash-type-สุรา {
+            color: #6c5ce7;
+            border-color: rgba(108, 92, 231, 0.3);
+            background: rgba(108, 92, 231, 0.08);
+        }
+
+        .dash-type-ยาสูบ {
+            color: #0984e3;
+            border-color: rgba(9, 132, 227, 0.3);
+            background: rgba(9, 132, 227, 0.08);
+        }
+
+        .dash-type-น้ำมัน {
+            color: #e17055;
+            border-color: rgba(225, 112, 85, 0.3);
+            background: rgba(225, 112, 85, 0.08);
+        }
+
+        .dash-type-ไพ่ {
+            color: #d63031;
+            border-color: rgba(214, 48, 49, 0.3);
+            background: rgba(214, 48, 49, 0.08);
+        }
+
+        .dash-type-อื่นๆ {
+            color: #888;
+            border-color: #ddd;
+            background: #f8f8f8;
+        }
+
         .dash-status-chip {
             display: inline-block;
             padding: 2px 10px;
@@ -1414,8 +1499,10 @@
             border-top: 1px solid #e8ecf0;
             flex-wrap: wrap;
         }
+
         .dash-page-btn {
-            width: 32px; height: 32px;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1428,10 +1515,12 @@
             cursor: pointer;
             transition: all 0.2s;
         }
+
         .dash-page-btn:hover {
             border-color: var(--primary-blue);
             color: var(--primary-blue);
         }
+
         .dash-page-btn.active {
             background: linear-gradient(135deg, #1a5490 0%, #2d6cb5 100%);
             border-color: var(--primary-blue);
@@ -1443,7 +1532,7 @@
         .dash-loading {
             position: fixed;
             inset: 0;
-            background: rgba(232,240,250,0.95);
+            background: rgba(232, 240, 250, 0.95);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -1452,13 +1541,16 @@
             gap: 14px;
             transition: opacity 0.5s ease;
         }
+
         .dash-loader-ring {
-            width: 44px; height: 44px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             border: 3px solid #e8ecf0;
             border-top-color: var(--primary-blue);
             animation: spin 0.9s linear infinite;
         }
+
         .dash-loader-text {
             font-size: 0.75rem;
             font-weight: 600;
@@ -1468,13 +1560,395 @@
 
         /* Dashboard entry animations */
         @keyframes dashFadeUp {
-            from { opacity: 0; transform: translateY(14px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        #dashboardPage .dash-nav-grid     { animation: dashFadeUp 0.5s ease both; animation-delay: 0.05s; }
-        #dashboardPage .dash-filter-bar   { animation: dashFadeUp 0.5s ease both; animation-delay: 0.1s; }
-        #dashboardPage .dash-main-grid    { animation: dashFadeUp 0.5s ease both; animation-delay: 0.15s; }
-        #dashboardPage .dash-table-section { animation: dashFadeUp 0.5s ease both; animation-delay: 0.2s; }
+
+        #dashboardPage .dash-nav-grid {
+            animation: dashFadeUp 0.5s ease both;
+            animation-delay: 0.05s;
+        }
+
+        #dashboardPage .dash-filter-bar {
+            animation: dashFadeUp 0.5s ease both;
+            animation-delay: 0.1s;
+        }
+
+        #dashboardPage .dash-main-grid {
+            animation: dashFadeUp 0.5s ease both;
+            animation-delay: 0.15s;
+        }
+
+        #dashboardPage .dash-table-section {
+            animation: dashFadeUp 0.5s ease both;
+            animation-delay: 0.2s;
+        }
+
+        /* ═══════ COMPLAINT PAGE STYLES ═══════ */
+        .complaint-section-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: var(--secondary-gray);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            padding-left: 2px;
+        }
+
+        .complaint-option-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .complaint-option-card:hover {
+            box-shadow: 0 10px 30px rgba(26, 75, 140, 0.15);
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .complaint-option-card:active {
+            transform: scale(0.99);
+        }
+
+        .complaint-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #1a5490 0%, #2d6cb5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(26, 84, 144, 0.25);
+        }
+
+        .complaint-card-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .complaint-card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 3px;
+        }
+
+        .complaint-card-desc {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        .complaint-card-arrow {
+            font-size: 1.2rem;
+            color: var(--primary-gold);
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .complaint-option-card:hover .complaint-card-arrow {
+            transform: translateX(4px);
+        }
+
+        /* Expand Panel */
+        .complaint-expand-panel {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            border: 2px solid var(--primary-blue);
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s ease,
+                transform 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        .complaint-expand-panel.open {
+            max-height: 2000px;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .complaint-panel-inner {
+            padding: 20px;
+        }
+
+        /* Confidentiality badge */
+        .conf-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #fffbeb;
+            border: 1px solid rgba(212, 160, 18, 0.4);
+            border-radius: 100px;
+            padding: 5px 14px;
+            font-size: 0.75rem;
+            color: #92400e;
+            font-weight: 500;
+            margin-bottom: 18px;
+        }
+
+        /* Complaint Tab Bar */
+        .complaint-tab-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .complaint-tab-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 14px 12px;
+            border-radius: 14px;
+            border: 2px solid #e8ecf0;
+            background: #f8fafc;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #888;
+            text-align: center;
+        }
+
+        .complaint-tab-btn .tab-icon {
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+
+        .complaint-tab-btn:hover {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+            background: #f0f6ff;
+        }
+
+        .complaint-tab-btn.active {
+            background: linear-gradient(135deg, #1a5490 0%, #2d6cb5 100%);
+            border-color: var(--primary-blue);
+            color: white;
+            box-shadow: 0 4px 15px rgba(26, 84, 144, 0.3);
+        }
+
+        /* Form sections */
+        .complaint-form-section {
+            display: none;
+        }
+
+        .complaint-form-section.show {
+            display: block;
+        }
+
+        .complaint-form-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid var(--primary-gold);
+        }
+
+        .complaint-form-header-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #1a5490 0%, #2d6cb5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(26, 84, 144, 0.25);
+        }
+
+        .complaint-form-header-text h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 2px;
+        }
+
+        .complaint-form-header-text p {
+            font-size: 0.72rem;
+            color: #888;
+        }
+
+        /* Complaint field */
+        .complaint-field {
+            margin-bottom: 15px;
+        }
+
+        .complaint-field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .complaint-label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 6px;
+        }
+
+        .complaint-label .req {
+            color: #ef4444;
+            margin-left: 2px;
+        }
+
+        .complaint-input,
+        .complaint-select,
+        .complaint-textarea {
+            width: 100%;
+            padding: 11px 14px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.88rem;
+            border: 2px solid #e8ecf0;
+            border-radius: 12px;
+            background: #f8fafc;
+            color: #333;
+            transition: all 0.2s;
+            appearance: none;
+            -webkit-appearance: none;
+            outline: none;
+        }
+
+        .complaint-input:focus,
+        .complaint-select:focus,
+        .complaint-textarea:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px rgba(26, 75, 140, 0.1);
+            background: white;
+        }
+
+        .complaint-input::placeholder,
+        .complaint-textarea::placeholder {
+            color: #bfc5d0;
+        }
+
+        .complaint-textarea {
+            resize: vertical;
+            min-height: 100px;
+            line-height: 1.6;
+        }
+
+        .complaint-select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+
+        /* Complaint submit button */
+        .complaint-btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #1a5490 0%, #2d6cb5 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 20px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 18px;
+            box-shadow: 0 4px 15px rgba(26, 84, 144, 0.3);
+        }
+
+        .complaint-btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 84, 144, 0.4);
+        }
+
+        .complaint-btn-submit:active {
+            transform: scale(0.99);
+        }
+
+        .complaint-btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Complaint alert */
+        .complaint-alert {
+            border-radius: 12px;
+            padding: 12px 15px;
+            font-size: 0.82rem;
+            margin-bottom: 14px;
+            display: none;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .complaint-alert.show {
+            display: flex;
+        }
+
+        .complaint-alert-success {
+            background: #d1fae5;
+            border: 1px solid #6ee7b7;
+            color: #065f46;
+        }
+
+        .complaint-alert-error {
+            background: #fee2e2;
+            border: 1px solid #fca5a5;
+            color: #991b1b;
+        }
+
+        /* Footer note for complaint */
+        .complaint-footer-note {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #bbb;
+            margin-top: 18px;
+            line-height: 1.7;
+        }
+
+        /* Complaint Spinner */
+        .complaint-spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.35);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
     </style>
 </head>
 
@@ -1550,13 +2024,14 @@
                         <div class="menu-subtitle">Fine Calculation</div>
                     </div>
                 </div>
-                <!-- Single Menu: ร้องเรียน -->
-                <div class="menu-single" onclick="showModal('ร้องเรียน')">
+                <!-- Single Menu: ร้องเรียน/แจ้งเบาะแส -->
+                <div class="menu-single" onclick="goTo('complaint')">
                     <div class="menu-icon">📢</div>
                     <div class="menu-single-text">
-                        <div class="menu-title">ร้องเรียน</div>
-                        <div class="menu-subtitle">Complaint</div>
+                        <div class="menu-title">ร้องเรียน/แจ้งเบาะแส</div>
+                        <div class="menu-subtitle">Complaint &amp; Tip-off</div>
                     </div>
+                    <span class="dashboard-arrow">➜</span>
                 </div>
                 <!-- Dashboard Entry Card -->
                 <div class="menu-single dashboard-entry" onclick="goTo('dashboard')">
@@ -1642,15 +2117,21 @@
                 <div class="dash-filter-bar">
                     <div class="dash-filter-group">
                         <label>เจาะจงเจ้าของคดี</label>
-                        <select id="dashOwnerFilter" onchange="dashProcessAndDisplay()"><option value="all">— ทั้งหมด —</option></select>
+                        <select id="dashOwnerFilter" onchange="dashProcessAndDisplay()">
+                            <option value="all">— ทั้งหมด —</option>
+                        </select>
                     </div>
                     <div class="dash-filter-group">
                         <label>เจาะจงประเภทคดี</label>
-                        <select id="dashTypeFilter" onchange="dashProcessAndDisplay()"><option value="all">— ทั้งหมด —</option></select>
+                        <select id="dashTypeFilter" onchange="dashProcessAndDisplay()">
+                            <option value="all">— ทั้งหมด —</option>
+                        </select>
                     </div>
                     <div class="dash-filter-group">
                         <label>เจาะจงสถานะ</label>
-                        <select id="dashStatusFilter" onchange="dashProcessAndDisplay()"><option value="all">— ทั้งหมด —</option></select>
+                        <select id="dashStatusFilter" onchange="dashProcessAndDisplay()">
+                            <option value="all">— ทั้งหมด —</option>
+                        </select>
                     </div>
                 </div>
 
@@ -1682,7 +2163,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="dash-stat-helper" id="dashHelperText">เลือกปุ่มวิเคราะห์ด้านบน หรือใช้ฟิลเตอร์เพื่อกรองข้อมูล</div>
+                        <div class="dash-stat-helper" id="dashHelperText">เลือกปุ่มวิเคราะห์ด้านบน
+                            หรือใช้ฟิลเตอร์เพื่อกรองข้อมูล</div>
                     </div>
 
                     <!-- Chart Card -->
@@ -1694,7 +2176,8 @@
                         <div class="dash-chart-container">
                             <div class="dash-chart-empty" id="dashChartEmpty">
                                 <div class="dash-chart-empty-icon">◎</div>
-                                <div class="dash-chart-empty-text">เลือกหัวข้อหรือฟิลเตอร์<br>เพื่อแสดงกราฟวิเคราะห์</div>
+                                <div class="dash-chart-empty-text">เลือกหัวข้อหรือฟิลเตอร์<br>เพื่อแสดงกราฟวิเคราะห์
+                                </div>
                             </div>
                             <canvas id="dashMainChart"></canvas>
                         </div>
@@ -1826,6 +2309,201 @@
             </div>
         </div>
 
+        <!-- COMPLAINT PAGE -->
+        <div id="complaintPage" class="page">
+            <header class="page-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Logo_of_the_Excise_Department.svg"
+                    alt="Logo" class="header-logo">
+                <div>
+                    <h2>📢 ร้องเรียน/แจ้งเบาะแส</h2>
+                    <p>สรรพสามิตพื้นที่สงขลา สาขาสะเดา</p>
+                </div>
+            </header>
+            <div class="content-area">
+                <p class="complaint-section-label">เลือกช่องทางการร้องเรียน</p>
+
+                <!-- Card 1: กรมสรรพสามิต -->
+                <a class="complaint-option-card" href="https://secretarynews.excise.go.th/#" target="_blank"
+                    rel="noopener noreferrer" aria-label="ร้องเรียนผ่านช่องทางกรมสรรพสามิต">
+                    <div class="complaint-card-icon">🏛️</div>
+                    <div class="complaint-card-body">
+                        <p class="complaint-card-title">ช่องทางกรมสรรพสามิต</p>
+                        <p class="complaint-card-desc">ร้องเรียน · แจ้งเบาะแส · ระดับกรม</p>
+                    </div>
+                    <div class="complaint-card-arrow">↗</div>
+                </a>
+
+                <!-- Card 2: สาขาสะเดา -->
+                <div class="complaint-option-card" id="localCardBtn" role="button" tabindex="0" aria-expanded="false"
+                    aria-controls="localPanel" aria-label="ร้องเรียนผ่านช่องทางสาขาสะเดา">
+                    <div class="complaint-card-icon">📍</div>
+                    <div class="complaint-card-body">
+                        <p class="complaint-card-title">ช่องทางสาขาสะเดา</p>
+                        <p class="complaint-card-desc">ติดต่อโดยตรง · สรรพสามิตพื้นที่สงขลา</p>
+                    </div>
+                    <div class="complaint-card-arrow" id="localArrow">↓</div>
+                </div>
+
+                <!-- Expandable Panel -->
+                <div class="complaint-expand-panel" id="localPanel" aria-hidden="true">
+                    <div class="complaint-panel-inner">
+
+                        <!-- Confidentiality badge -->
+                        <div style="text-align:center; margin-bottom:16px;">
+                            <span class="conf-badge">🔒 ข้อมูลของท่านจะถูกเก็บรักษาไว้เป็นความลับ</span>
+                        </div>
+
+                        <!-- Tab switcher -->
+                        <div class="complaint-tab-bar" role="tablist">
+                            <button class="complaint-tab-btn active" id="tabComplaint" role="tab" aria-selected="true"
+                                aria-controls="formComplaint" onclick="switchComplaintTab('complaint')">
+                                <span class="tab-icon">📋</span>
+                                เรื่องร้องเรียน
+                            </button>
+                            <button class="complaint-tab-btn" id="tabTip" role="tab" aria-selected="false"
+                                aria-controls="formTip" onclick="switchComplaintTab('tip')">
+                                <span class="tab-icon">🔍</span>
+                                แจ้งเบาะแส
+                            </button>
+                        </div>
+
+                        <!-- Form: เรื่องร้องเรียน -->
+                        <div class="complaint-form-section show" id="formComplaint" role="tabpanel"
+                            aria-labelledby="tabComplaint">
+                            <div class="complaint-form-header">
+                                <div class="complaint-form-header-icon">📋</div>
+                                <div class="complaint-form-header-text">
+                                    <h3>แบบฟอร์มเรื่องร้องเรียน</h3>
+                                    <p>กรอกข้อมูลให้ครบถ้วนเพื่อการดำเนินการที่รวดเร็ว</p>
+                                </div>
+                            </div>
+                            <div id="alertComplaint" class="complaint-alert" role="alert"></div>
+                            <form id="complaintForm" novalidate>
+                                <div class="complaint-field-row">
+                                    <div class="complaint-field">
+                                        <label class="complaint-label" for="c_firstname">ชื่อจริง <span
+                                                class="req">*</span></label>
+                                        <input type="text" id="c_firstname" name="firstname" class="complaint-input"
+                                            placeholder="กรอกชื่อจริง" required>
+                                    </div>
+                                    <div class="complaint-field">
+                                        <label class="complaint-label" for="c_lastname">นามสกุล <span
+                                                class="req">*</span></label>
+                                        <input type="text" id="c_lastname" name="lastname" class="complaint-input"
+                                            placeholder="กรอกนามสกุล" required>
+                                    </div>
+                                </div>
+                                <div class="complaint-field">
+                                    <label class="complaint-label" for="c_phone">เบอร์โทรศัพท์ <span
+                                            class="req">*</span></label>
+                                    <input type="tel" id="c_phone" name="phone" class="complaint-input"
+                                        placeholder="0XX-XXX-XXXX" required>
+                                </div>
+                                <div class="complaint-field">
+                                    <label class="complaint-label" for="c_email">อีเมล</label>
+                                    <input type="email" id="c_email" name="email" class="complaint-input"
+                                        placeholder="example@email.com">
+                                </div>
+                                <div class="complaint-field">
+                                    <label class="complaint-label" for="c_detail">เรื่อง / ประเด็นรายละเอียด <span
+                                            class="req">*</span></label>
+                                    <textarea id="c_detail" name="detail" class="complaint-textarea"
+                                        placeholder="อธิบายเรื่องร้องเรียนของท่านโดยละเอียด..." required></textarea>
+                                </div>
+                                <button type="submit" class="complaint-btn-submit" id="btnSubmitComplaint">
+                                    <span>ส่งเรื่องร้องเรียน</span>
+                                    <span>→</span>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Form: แจ้งเบาะแส -->
+                        <div class="complaint-form-section" id="formTip" role="tabpanel" aria-labelledby="tabTip">
+                            <div class="complaint-form-header">
+                                <div class="complaint-form-header-icon">🔍</div>
+                                <div class="complaint-form-header-text">
+                                    <h3>แบบฟอร์มแจ้งเบาะแส</h3>
+                                    <p>ข้อมูลของท่านจะได้รับการคุ้มครองตามกฎหมาย</p>
+                                </div>
+                            </div>
+                            <div id="alertTip" class="complaint-alert" role="alert"></div>
+                            <form id="tipForm" novalidate>
+                                <div class="complaint-field-row">
+                                    <div class="complaint-field">
+                                        <label class="complaint-label" for="t_firstname">ชื่อจริง <span
+                                                class="req">*</span></label>
+                                        <input type="text" id="t_firstname" name="firstname" class="complaint-input"
+                                            placeholder="กรอกชื่อจริง" required>
+                                    </div>
+                                    <div class="complaint-field">
+                                        <label class="complaint-label" for="t_lastname">นามสกุล <span
+                                                class="req">*</span></label>
+                                        <input type="text" id="t_lastname" name="lastname" class="complaint-input"
+                                            placeholder="กรอกนามสกุล" required>
+                                    </div>
+                                </div>
+                                <div class="complaint-field">
+                                    <label class="complaint-label" for="t_phone">เบอร์โทรศัพท์ <span
+                                            class="req">*</span></label>
+                                    <input type="tel" id="t_phone" name="phone" class="complaint-input"
+                                        placeholder="0XX-XXX-XXXX" required>
+                                </div>
+                                <div class="complaint-field">
+                                    <label class="complaint-label" for="t_email">อีเมล</label>
+                                    <input type="email" id="t_email" name="email" class="complaint-input"
+                                        placeholder="example@email.com">
+                                </div>
+                                <div class="complaint-field">
+                                    <label class="complaint-label" for="t_product">ประเภทสินค้า <span
+                                            class="req">*</span></label>
+                                    <select id="t_product" name="product" class="complaint-select" required>
+                                        <option value="">-- เลือกประเภทสินค้า --</option>
+                                        <option>สุรา</option>
+                                        <option>ยาสูบ</option>
+                                        <option>ไพ่</option>
+                                        <option>น้ำมันและผลิตภัณฑ์น้ำมัน</option>
+                                        <option>เครื่องดื่ม</option>
+                                        <option>เครื่องใช้ไฟฟ้า</option>
+                                        <option>แก้ว คริสตัล</option>
+                                        <option>รถยนต์</option>
+                                        <option>รถจักรยานยนต์</option>
+                                        <option>น้ำหอม และเครื่องสำอาง</option>
+                                        <option>พรมและสิ่งทอปูพื้นอื่น</option>
+                                        <option>แบตเตอรี่</option>
+                                        <option>สารละลายประเภทไฮโดรคาร์บอน</option>
+                                        <option>ไนต์คลับและดิสโก้เธค</option>
+                                        <option>สถานอาบน้ำหรืออบตัว</option>
+                                        <option>สารโอโซน</option>
+                                        <option>สนามแข่งม้า</option>
+                                        <option>สนามกอล์ฟ</option>
+                                        <option>อื่นๆ</option>
+                                    </select>
+                                </div>
+                                <div class="complaint-field">
+                                    <label class="complaint-label" for="t_detail">เรื่อง / ประเด็นรายละเอียด <span
+                                            class="req">*</span></label>
+                                    <textarea id="t_detail" name="detail" class="complaint-textarea"
+                                        placeholder="อธิบายข้อมูลเบาะแสของท่านโดยละเอียด..." required></textarea>
+                                </div>
+                                <button type="submit" class="complaint-btn-submit" id="btnSubmitTip">
+                                    <span>ส่งข้อมูลเบาะแส</span>
+                                    <span>→</span>
+                                </button>
+                            </form>
+                        </div>
+
+                        <p class="complaint-footer-note">⚖️ ดำเนินการตาม พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562</p>
+                    </div>
+                </div>
+
+                <!-- Footer contact -->
+                <div style="text-align:center; font-size:0.75rem; color:#888; padding: 10px 0 20px; line-height:1.8;">
+                    สรรพสามิตพื้นที่สงขลา สาขาสะเดา<br>
+                    โทร: 074-411-412 &nbsp;|&nbsp; จ.–ศ. 08:30–16:30 น.
+                </div>
+            </div>
+        </div>
+
         <!-- Bottom Navigation -->
         <nav class="bottom-nav">
             <div class="nav-item active" id="navHome" onclick="goTo('home')">
@@ -1884,6 +2562,17 @@
                 document.getElementById('dashboardPage').classList.add('active');
                 document.getElementById('navDashboard').classList.add('active');
                 if (!dashDataLoaded) dashFetchData();
+            } else if (page === 'complaint') {
+                document.getElementById('complaintPage').classList.add('active');
+                // Reset expand panel on navigate
+                const panel = document.getElementById('localPanel');
+                const btn = document.getElementById('localCardBtn');
+                if (panel && panel.classList.contains('open')) {
+                    panel.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                    panel.setAttribute('aria-hidden', 'true');
+                    document.getElementById('localArrow').textContent = '↓';
+                }
             }
             window.scrollTo(0, 0);
         }
@@ -1892,6 +2581,119 @@
             document.getElementById('modal').classList.add('show');
         }
         function closeModal() { document.getElementById('modal').classList.remove('show'); }
+
+        // ═══════════════════════════════════════════════════
+        // COMPLAINT MODULE
+        // ═══════════════════════════════════════════════════
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzHiZwzNEynyD0cPrOafziVkPmKNX3dPqJF_fKzxNDzOapGJ6uwTnQsxo6Dt3pVuCxueQ/exec';
+
+        // Toggle expand panel
+        (function () {
+            function initComplaintPanel() {
+                const localBtn = document.getElementById('localCardBtn');
+                const panel = document.getElementById('localPanel');
+                const arrow = document.getElementById('localArrow');
+                if (!localBtn || !panel) return;
+
+                function togglePanel() {
+                    const isOpen = panel.classList.toggle('open');
+                    localBtn.setAttribute('aria-expanded', isOpen);
+                    panel.setAttribute('aria-hidden', !isOpen);
+                    arrow.textContent = isOpen ? '↑' : '↓';
+                    if (isOpen) {
+                        setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+                    }
+                }
+                localBtn.addEventListener('click', togglePanel);
+                localBtn.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); togglePanel(); }
+                });
+            }
+            initComplaintPanel();
+        })();
+
+        // Tab switching for complaint page
+        function switchComplaintTab(tab) {
+            const isComplaint = tab === 'complaint';
+            document.getElementById('tabComplaint').classList.toggle('active', isComplaint);
+            document.getElementById('tabTip').classList.toggle('active', !isComplaint);
+            document.getElementById('tabComplaint').setAttribute('aria-selected', isComplaint);
+            document.getElementById('tabTip').setAttribute('aria-selected', !isComplaint);
+            document.getElementById('formComplaint').classList.toggle('show', isComplaint);
+            document.getElementById('formTip').classList.toggle('show', !isComplaint);
+        }
+
+        // Alert helpers for complaint
+        function showComplaintAlert(id, type, msg) {
+            const el = document.getElementById(id);
+            el.className = `complaint-alert complaint-alert-${type} show`;
+            el.innerHTML = `<span>${type === 'success' ? '✅' : '⚠️'}</span><span>${msg}</span>`;
+        }
+        function setComplaintLoading(btnId, loading, defaultHtml) {
+            const btn = document.getElementById(btnId);
+            if (loading) {
+                btn.disabled = true;
+                btn.innerHTML = '<div class="complaint-spinner"></div><span>กำลังส่ง...</span>';
+            } else {
+                btn.disabled = false;
+                btn.innerHTML = defaultHtml;
+            }
+        }
+        // ── no-cors: ส่งข้อมูลไป Apps Script โดยไม่รอ response ──
+        // Google Apps Script ไม่รองรับ CORS จาก fetch โดยตรง
+        // ใช้ mode:'no-cors' → ข้อมูลถูกส่งไป Sheet แต่ response จะเป็น opaque
+        async function submitComplaintToSheets(formData, sheet) {
+            const payload = { ...Object.fromEntries(formData), sheet };
+            await fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',         // ← แก้ CORS error
+                redirect: 'follow',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify(payload)
+            });
+            // no-cors จะ return opaque response (ไม่สามารถอ่านได้)
+            // ถ้า fetch ไม่ throw error = ส่งสำเร็จ
+        }
+
+        // Complaint form submit
+        document.getElementById('complaintForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const fd = new FormData(this);
+            if (!fd.get('firstname') || !fd.get('lastname') || !fd.get('phone') || !fd.get('detail')) {
+                showComplaintAlert('alertComplaint', 'error', 'กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน');
+                return;
+            }
+            setComplaintLoading('btnSubmitComplaint', true);
+            try {
+                await submitComplaintToSheets(fd, 'เรื่องร้องเรียน');
+                showComplaintAlert('alertComplaint', 'success', 'ส่งเรื่องร้องเรียนสำเร็จ เจ้าหน้าที่จะติดต่อกลับภายใน 3 วันทำการ');
+                this.reset();
+            } catch (err) {
+                showComplaintAlert('alertComplaint', 'error', 'ไม่สามารถเชื่อมต่อได้ กรุณาตรวจสอบ URL ของ Apps Script');
+            } finally {
+                setComplaintLoading('btnSubmitComplaint', false, '<span>ส่งเรื่องร้องเรียน</span><span>→</span>');
+            }
+        });
+
+        // Tip form submit
+        document.getElementById('tipForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const fd = new FormData(this);
+            if (!fd.get('firstname') || !fd.get('lastname') || !fd.get('phone') || !fd.get('product') || !fd.get('detail')) {
+                showComplaintAlert('alertTip', 'error', 'กรุณากรอกข้อมูลที่จำเป็นและเลือกประเภทสินค้าให้ครบถ้วน');
+                return;
+            }
+            setComplaintLoading('btnSubmitTip', true);
+            try {
+                await submitComplaintToSheets(fd, 'แจ้งเบาะแส');
+                showComplaintAlert('alertTip', 'success', 'ส่งข้อมูลเบาะแสสำเร็จ ขอบคุณสำหรับข้อมูลของท่าน');
+                this.reset();
+            } catch (err) {
+                showComplaintAlert('alertTip', 'error', 'ไม่สามารถเชื่อมต่อได้ กรุณาตรวจสอบ URL ของ Apps Script');
+            } finally {
+                setComplaintLoading('btnSubmitTip', false, '<span>ส่งข้อมูลเบาะแส</span><span>→</span>');
+            }
+        });
 
         // Home Search - Link to Payoff
         function handleHomeSearch(e) {
@@ -2311,7 +3113,7 @@
             Papa.parse(DASH_CSV_URL, {
                 download: true,
                 header: false,
-                complete: function(results) {
+                complete: function (results) {
                     dashRawData = results.data.slice(4).filter(row => row[4] && row[4].trim() !== "");
                     dashSetupFilters(dashRawData);
                     dashProcessAndDisplay();
@@ -2360,25 +3162,25 @@
         }
 
         function dashProcessAndDisplay() {
-            const fOwner  = document.getElementById('dashOwnerFilter').value;
-            const fType   = document.getElementById('dashTypeFilter').value;
+            const fOwner = document.getElementById('dashOwnerFilter').value;
+            const fType = document.getElementById('dashTypeFilter').value;
             const fStatus = document.getElementById('dashStatusFilter').value;
             const isFilterActive = (fOwner !== 'all' || fType !== 'all' || fStatus !== 'all');
 
             dashFilteredData = dashRawData.filter(row => {
-                return (fOwner  === 'all' || dashGetOwnerLabel(row) === fOwner)
-                    && (fType   === 'all' || dashGetTypeLabel(row)  === fType)
+                return (fOwner === 'all' || dashGetOwnerLabel(row) === fOwner)
+                    && (fType === 'all' || dashGetTypeLabel(row) === fType)
                     && (fStatus === 'all' || dashCleanStatus(row[26]) === fStatus);
             });
 
             const total = dashRawData.length;
             const match = dashFilteredData.length;
-            const pct   = total > 0 ? Math.round(match / total * 100) : 0;
+            const pct = total > 0 ? Math.round(match / total * 100) : 0;
 
             const elMatch = document.getElementById('dashCountMatch');
             const elTotal = document.getElementById('dashCountTotal');
-            dashAnimateValue(elMatch, parseInt(elMatch.textContent.replace(/,/g,'')) || 0, match);
-            dashAnimateValue(elTotal, parseInt(elTotal.textContent.replace(/,/g,'')) || 0, total);
+            dashAnimateValue(elMatch, parseInt(elMatch.textContent.replace(/,/g, '')) || 0, match);
+            dashAnimateValue(elTotal, parseInt(elTotal.textContent.replace(/,/g, '')) || 0, total);
             document.getElementById('dashPercentDisplay').textContent = pct + '%';
             document.getElementById('dashStatBarFill').style.width = pct + '%';
             document.getElementById('dashListCount').textContent = match.toLocaleString();
@@ -2399,7 +3201,7 @@
 
             const showEmpty = !dashCurrentMode && !isFilterActive;
             document.getElementById('dashChartEmpty').style.display = showEmpty ? 'flex' : 'none';
-            document.getElementById('dashMainChart').style.display  = showEmpty ? 'none' : 'block';
+            document.getElementById('dashMainChart').style.display = showEmpty ? 'none' : 'block';
 
             if (!showEmpty) {
                 let chartData = {};
@@ -2409,12 +3211,12 @@
                 } else {
                     dashFilteredData.forEach(row => {
                         const key = dashCurrentMode === 'owner' ? dashGetOwnerLabel(row)
-                                  : dashCurrentMode === 'type'  ? dashGetTypeLabel(row)
-                                  : dashCleanStatus(row[26]);
+                            : dashCurrentMode === 'type' ? dashGetTypeLabel(row)
+                                : dashCleanStatus(row[26]);
                         chartData[key] = (chartData[key] || 0) + 1;
                     });
-                    const sorted = Object.entries(chartData).sort((a,b) => b[1]-a[1]);
-                    dashRenderChart(sorted.map(e=>e[0]), sorted.map(e=>e[1]), false);
+                    const sorted = Object.entries(chartData).sort((a, b) => b[1] - a[1]);
+                    dashRenderChart(sorted.map(e => e[0]), sorted.map(e => e[1]), false);
                 }
             } else {
                 if (dashChart) { dashChart.destroy(); dashChart = null; }
@@ -2440,7 +3242,7 @@
             pageData.forEach((row, i) => {
                 const tr = document.createElement('tr');
                 const idx = start + i + 1;
-                const caseNum = `${row[4]||'–'}/${row[5]||'–'}`;
+                const caseNum = `${row[4] || '–'}/${row[5] || '–'}`;
                 const type = dashGetTypeLabel(row);
                 const owner = dashGetOwnerLabel(row);
                 tr.innerHTML = `
@@ -2472,8 +3274,8 @@
             const ctx = document.getElementById('dashMainChart').getContext('2d');
             if (dashChart) dashChart.destroy();
 
-            const palette = ['#1a5490','#d4a012','#2d6cb5','#e17055','#00b894','#6c5ce7','#fdcb6e'];
-            const colors = isComparison ? ['#1a5490','#e8ecf0'] : palette;
+            const palette = ['#1a5490', '#d4a012', '#2d6cb5', '#e17055', '#00b894', '#6c5ce7', '#fdcb6e'];
+            const colors = isComparison ? ['#1a5490', '#e8ecf0'] : palette;
 
             dashChart = new Chart(ctx, {
                 type: 'doughnut',
