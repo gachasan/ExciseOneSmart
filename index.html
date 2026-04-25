@@ -1591,6 +1591,321 @@
             animation-delay: 0.2s;
         }
 
+        /* ═══════ DASHBOARD OVERVIEW SECTION ═══════ */
+
+        /* Section Toggle Buttons */
+        .dash-section-toggle {
+            width: 100%;
+            background: white;
+            border: 2px solid #e8ecf0;
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            transition: all 0.3s ease;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dash-section-toggle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-gold));
+        }
+
+        .dash-section-toggle:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 6px 20px rgba(26, 75, 140, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .dash-section-toggle.active {
+            border-color: var(--primary-blue);
+            background: linear-gradient(135deg, rgba(26, 75, 140, 0.03) 0%, rgba(212, 160, 18, 0.03) 100%);
+        }
+
+        .dash-toggle-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dash-toggle-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .dash-toggle-icon.blue {
+            background: linear-gradient(135deg, #1a5490 0%, #2d6cb5 100%);
+            box-shadow: 0 3px 10px rgba(26, 84, 144, 0.25);
+        }
+
+        .dash-toggle-icon.gold {
+            background: linear-gradient(135deg, var(--primary-gold) 0%, #b8860b 100%);
+            box-shadow: 0 3px 10px rgba(212, 160, 18, 0.25);
+        }
+
+        .dash-toggle-arrow {
+            font-size: 1rem;
+            color: var(--primary-gold);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+
+        .dash-section-toggle.active .dash-toggle-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Collapsible Content */
+        .dash-section-collapsible {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.35s ease;
+            margin-bottom: 4px;
+        }
+
+        .dash-section-collapsible.open {
+            max-height: 5000px;
+            opacity: 1;
+        }
+
+        .dash-section-inner {
+            padding-bottom: 10px;
+        }
+
+        /* Overview Stats Grid */
+        .dash-overview-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        @media (min-width: 380px) {
+            .dash-overview-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        /* Overview Card */
+        .dash-overview-card {
+            background: white;
+            border: 2px solid #e8ecf0;
+            border-radius: 18px;
+            padding: 18px 14px 16px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .dash-overview-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .dash-overview-card .ov-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .dash-overview-card .ov-accent.accent-blue {
+            background: linear-gradient(90deg, #1a5490, #2d6cb5);
+        }
+
+        .dash-overview-card .ov-accent.accent-green {
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+
+        .dash-overview-card .ov-accent.accent-amber {
+            background: linear-gradient(90deg, #d4a012, #f59e0b);
+        }
+
+        .dash-overview-card .ov-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin: 0 auto 10px;
+        }
+
+        .dash-overview-card .ov-icon.icon-blue {
+            background: linear-gradient(135deg, rgba(26, 84, 144, 0.12) 0%, rgba(45, 108, 181, 0.12) 100%);
+        }
+
+        .dash-overview-card .ov-icon.icon-green {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(5, 150, 105, 0.12) 100%);
+        }
+
+        .dash-overview-card .ov-icon.icon-amber {
+            background: linear-gradient(135deg, rgba(212, 160, 18, 0.12) 0%, rgba(245, 158, 11, 0.12) 100%);
+        }
+
+        .dash-overview-card .ov-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+
+        .dash-overview-card .ov-value.val-blue {
+            color: var(--primary-blue);
+        }
+
+        .dash-overview-card .ov-value.val-green {
+            color: #059669;
+        }
+
+        .dash-overview-card .ov-value.val-amber {
+            color: #b8860b;
+        }
+
+        .dash-overview-card .ov-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #888;
+            letter-spacing: 0.03em;
+        }
+
+        .dash-overview-card .ov-sub {
+            font-size: 0.65rem;
+            color: #aaa;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        .dash-overview-card .ov-unit {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #999;
+        }
+
+        /* Overview Chart Cards */
+        .dash-overview-chart-card {
+            background: white;
+            border: 2px solid #e8ecf0;
+            border-radius: 18px;
+            padding: 18px 16px;
+            margin-bottom: 14px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .dash-overview-chart-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-gold));
+        }
+
+        .dash-overview-chart-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .dash-overview-chart-header .ov-chart-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1a5490 0%, #2d6cb5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            box-shadow: 0 3px 8px rgba(26, 84, 144, 0.2);
+        }
+
+        .dash-overview-chart-header .ov-chart-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .dash-overview-chart-header .ov-chart-subtitle {
+            font-size: 0.65rem;
+            color: #999;
+            font-weight: 500;
+        }
+
+        .dash-overview-chart-container {
+            position: relative;
+            min-height: 220px;
+        }
+
+        /* Overview animations */
+        .dash-ov-animate {
+            opacity: 0;
+            transform: translateY(16px);
+            animation: dashOvFadeUp 0.5s ease forwards;
+        }
+
+        @keyframes dashOvFadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dash-ov-animate:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .dash-ov-animate:nth-child(2) {
+            animation-delay: 0.12s;
+        }
+
+        .dash-ov-animate:nth-child(3) {
+            animation-delay: 0.19s;
+        }
+
+        .dash-ov-chart-animate {
+            opacity: 0;
+            transform: translateY(16px);
+            animation: dashOvFadeUp 0.5s ease forwards;
+        }
+
+        .dash-ov-chart-animate:nth-of-type(1) {
+            animation-delay: 0.25s;
+        }
+
+        .dash-ov-chart-animate:nth-of-type(2) {
+            animation-delay: 0.35s;
+        }
+
         /* ═══════ COMPLAINT PAGE STYLES ═══════ */
         .complaint-section-label {
             font-size: 0.7rem;
@@ -2096,115 +2411,218 @@
                     <div class="dash-loader-text">กำลังโหลดข้อมูล...</div>
                 </div>
 
-                <!-- Nav Buttons -->
+                <!-- Section Label -->
                 <div class="dash-section-label">⬡ เลือกมุมมองการวิเคราะห์</div>
-                <div class="dash-nav-grid">
-                    <button id="dash-btn-owner" class="dash-nav-btn" onclick="dashToggleMode('owner')">
-                        <span class="dash-btn-icon">👤</span>
-                        <span>เจ้าของคดี</span>
-                    </button>
-                    <button id="dash-btn-type" class="dash-nav-btn" onclick="dashToggleMode('type')">
-                        <span class="dash-btn-icon">📦</span>
-                        <span>ประเภทคดี</span>
-                    </button>
-                    <button id="dash-btn-status" class="dash-nav-btn" onclick="dashToggleMode('status')">
-                        <span class="dash-btn-icon">💰</span>
-                        <span>สถานะรางวัล</span>
-                    </button>
-                </div>
 
-                <!-- Filters -->
-                <div class="dash-filter-bar">
-                    <div class="dash-filter-group">
-                        <label>เจาะจงเจ้าของคดี</label>
-                        <select id="dashOwnerFilter" onchange="dashProcessAndDisplay()">
-                            <option value="all">— ทั้งหมด —</option>
-                        </select>
+                <!-- ═══ หัวข้อ 1: ภาพรวมสถิติ ═══ -->
+                <button class="dash-section-toggle active" id="dashToggleOverview"
+                    onclick="dashToggleSection('overview')">
+                    <div class="dash-toggle-left">
+                        <div class="dash-toggle-icon blue">📊</div>
+                        <span>ภาพรวมสถิติ</span>
                     </div>
-                    <div class="dash-filter-group">
-                        <label>เจาะจงประเภทคดี</label>
-                        <select id="dashTypeFilter" onchange="dashProcessAndDisplay()">
-                            <option value="all">— ทั้งหมด —</option>
-                        </select>
-                    </div>
-                    <div class="dash-filter-group">
-                        <label>เจาะจงสถานะ</label>
-                        <select id="dashStatusFilter" onchange="dashProcessAndDisplay()">
-                            <option value="all">— ทั้งหมด —</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Main Grid: Stat + Chart -->
-                <div class="dash-main-grid">
-                    <!-- Stat Card -->
-                    <div class="dash-stat-card">
-                        <div>
-                            <div class="dash-stat-label">ผลลัพธ์ที่เลือก</div>
-                            <div class="dash-stat-subtitle" id="dashDisplayLabel">ข้อมูลทั้งหมด</div>
-                        </div>
-                        <div>
-                            <div class="dash-stat-divider"></div>
-                            <div>
-                                <div class="dash-stat-big">
-                                    <span class="num-hl" id="dashCountMatch">0</span>
-                                    <span class="num-sep">&nbsp;/&nbsp;</span>
-                                    <span class="num-total" id="dashCountTotal">0</span>
+                    <span class="dash-toggle-arrow">▼</span>
+                </button>
+                <div class="dash-section-collapsible open" id="dashSectionOverview">
+                    <div class="dash-section-inner">
+                        <!-- 3 Stat Cards -->
+                        <div class="dash-overview-grid">
+                            <!-- Card 1: คดีทั้งหมด -->
+                            <div class="dash-overview-card dash-ov-animate">
+                                <div class="ov-accent accent-blue"></div>
+                                <div class="ov-icon icon-blue">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a5490"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                        <polyline points="14 2 14 8 20 8" />
+                                        <line x1="16" y1="13" x2="8" y2="13" />
+                                        <line x1="16" y1="17" x2="8" y2="17" />
+                                        <polyline points="10 9 9 9 8 9" />
+                                    </svg>
                                 </div>
-                                <div class="dash-stat-total">คดีที่ตรงเงื่อนไข / ทั้งหมด</div>
+                                <div class="ov-value val-blue" id="ovTotalCases">0</div>
+                                <div class="ov-label">คดีทั้งหมด</div>
+                                <div class="ov-sub">ค่าปรับรวม <span class="ov-unit" id="ovTotalFine">฿0</span></div>
                             </div>
-                            <div class="dash-bar-wrap">
-                                <div class="dash-bar-header">
-                                    <span class="dash-bar-label">สัดส่วนจากทั้งหมด</span>
-                                    <span class="dash-bar-pct" id="dashPercentDisplay">0%</span>
+                            <!-- Card 2: จ่ายครบแล้ว -->
+                            <div class="dash-overview-card dash-ov-animate">
+                                <div class="ov-accent accent-green"></div>
+                                <div class="ov-icon icon-green">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                        <polyline points="22 4 12 14.01 9 11.01" />
+                                    </svg>
                                 </div>
-                                <div class="dash-bar-bg">
-                                    <div class="dash-bar-fill" id="dashStatBarFill" style="width:0%"></div>
+                                <div class="ov-value val-green" id="ovPaidCases">0</div>
+                                <div class="ov-label">เบิกจ่ายครบแล้ว</div>
+                            </div>
+                            <!-- Card 3: อยู่ระหว่างดำเนินการ -->
+                            <div class="dash-overview-card dash-ov-animate">
+                                <div class="ov-accent accent-amber"></div>
+                                <div class="ov-icon icon-amber">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b8860b"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <polyline points="12 6 12 12 16 14" />
+                                    </svg>
                                 </div>
+                                <div class="ov-value val-amber" id="ovPendingCases">0</div>
+                                <div class="ov-label">ระหว่างดำเนินการ</div>
                             </div>
                         </div>
-                        <div class="dash-stat-helper" id="dashHelperText">เลือกปุ่มวิเคราะห์ด้านบน
-                            หรือใช้ฟิลเตอร์เพื่อกรองข้อมูล</div>
-                    </div>
 
-                    <!-- Chart Card -->
-                    <div class="dash-chart-card">
-                        <div class="dash-chart-header">
-                            <div class="dash-chart-title">การวิเคราะห์แบบกราฟ</div>
-                            <div class="dash-chart-badge" id="dashChartModeBadge">— เลือกมุมมอง —</div>
-                        </div>
-                        <div class="dash-chart-container">
-                            <div class="dash-chart-empty" id="dashChartEmpty">
-                                <div class="dash-chart-empty-icon">◎</div>
-                                <div class="dash-chart-empty-text">เลือกหัวข้อหรือฟิลเตอร์<br>เพื่อแสดงกราฟวิเคราะห์
+                        <!-- Chart: ประเภทสินค้า (Bar) -->
+                        <div class="dash-overview-chart-card dash-ov-chart-animate">
+                            <div class="dash-overview-chart-header">
+                                <div class="ov-chart-icon">📦</div>
+                                <div>
+                                    <div class="ov-chart-title">ประเภทสินค้าของคดี</div>
+                                    <div class="ov-chart-subtitle">จำนวนคดีแยกตามประเภทสินค้า</div>
                                 </div>
                             </div>
-                            <canvas id="dashMainChart"></canvas>
+                            <div class="dash-overview-chart-container">
+                                <canvas id="ovBarChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Chart: เจ้าของคดี (Pie) -->
+                        <div class="dash-overview-chart-card dash-ov-chart-animate">
+                            <div class="dash-overview-chart-header">
+                                <div class="ov-chart-icon">👥</div>
+                                <div>
+                                    <div class="ov-chart-title">เจ้าของคดี</div>
+                                    <div class="ov-chart-subtitle">สัดส่วนเปอร์เซ็นต์แยกตามเจ้าของ</div>
+                                </div>
+                            </div>
+                            <div class="dash-overview-chart-container">
+                                <canvas id="ovPieChart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Table -->
-                <div class="dash-table-section">
-                    <div class="dash-table-header">
-                        <div class="dash-table-title">📂 รายการคดีที่เลือก</div>
-                        <div class="dash-table-count"><span id="dashListCount">0</span> คดี</div>
+                <!-- ═══ หัวข้อ 2: สถิติแยกแต่ละประเภท ═══ -->
+                <button class="dash-section-toggle" id="dashToggleDetail" onclick="dashToggleSection('detail')">
+                    <div class="dash-toggle-left">
+                        <div class="dash-toggle-icon gold">📋</div>
+                        <span>สถิติแยกแต่ละประเภท</span>
                     </div>
-                    <div class="dash-table-wrapper">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th style="width:40px; text-align:center;">#</th>
-                                    <th>เลขที่คดี / ปี</th>
-                                    <th>เจ้าของคดี</th>
-                                    <th>ประเภท</th>
-                                    <th>สถานะ</th>
-                                </tr>
-                            </thead>
-                            <tbody id="dashDataTableBody"></tbody>
-                        </table>
+                    <span class="dash-toggle-arrow">▼</span>
+                </button>
+                <div class="dash-section-collapsible" id="dashSectionDetail">
+                    <div class="dash-section-inner">
+                        <!-- Nav Buttons -->
+                        <div class="dash-nav-grid">
+                            <button id="dash-btn-owner" class="dash-nav-btn" onclick="dashToggleMode('owner')">
+                                <span class="dash-btn-icon">👤</span>
+                                <span>เจ้าของคดี</span>
+                            </button>
+                            <button id="dash-btn-type" class="dash-nav-btn" onclick="dashToggleMode('type')">
+                                <span class="dash-btn-icon">📦</span>
+                                <span>ประเภทคดี</span>
+                            </button>
+                            <button id="dash-btn-status" class="dash-nav-btn" onclick="dashToggleMode('status')">
+                                <span class="dash-btn-icon">💰</span>
+                                <span>สถานะรางวัล</span>
+                            </button>
+                        </div>
+
+                        <!-- Filters -->
+                        <div class="dash-filter-bar">
+                            <div class="dash-filter-group">
+                                <label>เจาะจงเจ้าของคดี</label>
+                                <select id="dashOwnerFilter" onchange="dashProcessAndDisplay()">
+                                    <option value="all">— ทั้งหมด —</option>
+                                </select>
+                            </div>
+                            <div class="dash-filter-group">
+                                <label>เจาะจงประเภทคดี</label>
+                                <select id="dashTypeFilter" onchange="dashProcessAndDisplay()">
+                                    <option value="all">— ทั้งหมด —</option>
+                                </select>
+                            </div>
+                            <div class="dash-filter-group">
+                                <label>เจาะจงสถานะ</label>
+                                <select id="dashStatusFilter" onchange="dashProcessAndDisplay()">
+                                    <option value="all">— ทั้งหมด —</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Main Grid: Stat + Chart -->
+                        <div class="dash-main-grid">
+                            <!-- Stat Card -->
+                            <div class="dash-stat-card">
+                                <div>
+                                    <div class="dash-stat-label">ผลลัพธ์ที่เลือก</div>
+                                    <div class="dash-stat-subtitle" id="dashDisplayLabel">ข้อมูลทั้งหมด</div>
+                                </div>
+                                <div>
+                                    <div class="dash-stat-divider"></div>
+                                    <div>
+                                        <div class="dash-stat-big">
+                                            <span class="num-hl" id="dashCountMatch">0</span>
+                                            <span class="num-sep">&nbsp;/&nbsp;</span>
+                                            <span class="num-total" id="dashCountTotal">0</span>
+                                        </div>
+                                        <div class="dash-stat-total">คดีที่ตรงเงื่อนไข / ทั้งหมด</div>
+                                    </div>
+                                    <div class="dash-bar-wrap">
+                                        <div class="dash-bar-header">
+                                            <span class="dash-bar-label">สัดส่วนจากทั้งหมด</span>
+                                            <span class="dash-bar-pct" id="dashPercentDisplay">0%</span>
+                                        </div>
+                                        <div class="dash-bar-bg">
+                                            <div class="dash-bar-fill" id="dashStatBarFill" style="width:0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dash-stat-helper" id="dashHelperText">เลือกปุ่มวิเคราะห์ด้านบน
+                                    หรือใช้ฟิลเตอร์เพื่อกรองข้อมูล</div>
+                            </div>
+
+                            <!-- Chart Card -->
+                            <div class="dash-chart-card">
+                                <div class="dash-chart-header">
+                                    <div class="dash-chart-title">การวิเคราะห์แบบกราฟ</div>
+                                    <div class="dash-chart-badge" id="dashChartModeBadge">— เลือกมุมมอง —</div>
+                                </div>
+                                <div class="dash-chart-container">
+                                    <div class="dash-chart-empty" id="dashChartEmpty">
+                                        <div class="dash-chart-empty-icon">◎</div>
+                                        <div class="dash-chart-empty-text">
+                                            เลือกหัวข้อหรือฟิลเตอร์<br>เพื่อแสดงกราฟวิเคราะห์
+                                        </div>
+                                    </div>
+                                    <canvas id="dashMainChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Table -->
+                        <div class="dash-table-section">
+                            <div class="dash-table-header">
+                                <div class="dash-table-title">📂 รายการคดีที่เลือก</div>
+                                <div class="dash-table-count"><span id="dashListCount">0</span> คดี</div>
+                            </div>
+                            <div class="dash-table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th style="width:40px; text-align:center;">#</th>
+                                            <th>เลขที่คดี / ปี</th>
+                                            <th>เจ้าของคดี</th>
+                                            <th>ประเภท</th>
+                                            <th>สถานะ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dashDataTableBody"></tbody>
+                                </table>
+                            </div>
+                            <div id="dashPagination" class="dash-pagination"></div>
+                        </div>
                     </div>
-                    <div id="dashPagination" class="dash-pagination"></div>
                 </div>
             </div>
         </div>
@@ -3107,6 +3525,9 @@
             return 'อื่นๆ';
         }
 
+        let ovBarChart = null;
+        let ovPieChart = null;
+
         function dashFetchData() {
             const overlay = document.getElementById('dashLoadingOverlay');
             overlay.style.display = 'flex';
@@ -3117,9 +3538,212 @@
                     dashRawData = results.data.slice(4).filter(row => row[4] && row[4].trim() !== "");
                     dashSetupFilters(dashRawData);
                     dashProcessAndDisplay();
+                    dashRenderOverview();
                     overlay.style.opacity = '0';
                     setTimeout(() => overlay.style.display = 'none', 500);
                     dashDataLoaded = true;
+                }
+            });
+        }
+
+        // ═══ Dashboard Section Toggle ═══
+        function dashToggleSection(section) {
+            const sectionMap = {
+                overview: { btn: 'dashToggleOverview', content: 'dashSectionOverview' },
+                detail: { btn: 'dashToggleDetail', content: 'dashSectionDetail' }
+            };
+            const s = sectionMap[section];
+            if (!s) return;
+            const btn = document.getElementById(s.btn);
+            const content = document.getElementById(s.content);
+            const isOpen = content.classList.contains('open');
+            if (isOpen) {
+                content.classList.remove('open');
+                btn.classList.remove('active');
+            } else {
+                content.classList.add('open');
+                btn.classList.add('active');
+                setTimeout(() => content.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+            }
+        }
+
+        // ═══ Dashboard Overview Render ═══
+        function dashRenderOverview() {
+            const data = dashRawData;
+            if (!data || data.length === 0) return;
+
+            // --- Stat Cards ---
+            const totalCases = data.length;
+
+            // Total fine (column 20)
+            let totalFine = 0;
+            data.forEach(row => {
+                const val = row[20];
+                if (val && val !== '-' && val.trim() !== '') {
+                    const num = parseFloat(String(val).replace(/,/g, ''));
+                    if (!isNaN(num)) totalFine += num;
+                }
+            });
+
+            // Paid vs pending
+            let paidCount = 0;
+            data.forEach(row => {
+                const status = dashCleanStatus(row[26]);
+                if (status.includes('จ่ายครบ')) paidCount++;
+            });
+            const pendingCount = totalCases - paidCount;
+
+            // Animate values
+            const elTotal = document.getElementById('ovTotalCases');
+            const elPaid = document.getElementById('ovPaidCases');
+            const elPending = document.getElementById('ovPendingCases');
+            dashAnimateValue(elTotal, 0, totalCases);
+            dashAnimateValue(elPaid, 0, paidCount);
+            dashAnimateValue(elPending, 0, pendingCount);
+
+            // Format total fine
+            const fineFormatted = totalFine.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById('ovTotalFine').textContent = '฿' + fineFormatted;
+
+            // --- Bar Chart: ประเภทสินค้า ---
+            const typeCounts = {};
+            const typeLabels = ['น้ำมัน', 'ยาสูบ', 'สุรา', 'อื่นๆ', 'ไพ่'];
+            typeLabels.forEach(l => typeCounts[l] = 0);
+            data.forEach(row => {
+                const t = dashGetTypeLabel(row);
+                typeCounts[t] = (typeCounts[t] || 0) + 1;
+            });
+
+            const barLabels = typeLabels;
+            const barValues = barLabels.map(l => typeCounts[l] || 0);
+            const barColors = ['#e17055', '#0984e3', '#6c5ce7', '#a0a0a0', '#d63031'];
+            const barBorderColors = ['#d35400', '#0870c2', '#5a4bd1', '#888888', '#c02020'];
+
+            const barCtx = document.getElementById('ovBarChart').getContext('2d');
+            if (ovBarChart) ovBarChart.destroy();
+            ovBarChart = new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: barLabels,
+                    datasets: [{
+                        label: 'จำนวนคดี',
+                        data: barValues,
+                        backgroundColor: barColors,
+                        borderColor: barBorderColors,
+                        borderWidth: 2,
+                        borderRadius: 8,
+                        borderSkipped: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: { padding: { top: 20, bottom: 5, left: 5, right: 5 } },
+                    animation: { duration: 800, easing: 'easeOutQuart' },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                font: { family: "'Prompt', sans-serif", size: 11 },
+                                color: '#888',
+                                stepSize: 1
+                            },
+                            grid: { color: 'rgba(0,0,0,0.04)' }
+                        },
+                        x: {
+                            ticks: {
+                                font: { family: "'Prompt', sans-serif", size: 11, weight: '600' },
+                                color: '#555'
+                            },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'end',
+                            color: '#333',
+                            font: { weight: '700', size: 12, family: "'Prompt', sans-serif" },
+                            formatter: (value) => value > 0 ? value : ''
+                        }
+                    }
+                }
+            });
+
+            // --- Pie Chart: เจ้าของคดี ---
+            const ownerCounts = {};
+            data.forEach(row => {
+                const o = dashGetOwnerLabel(row);
+                ownerCounts[o] = (ownerCounts[o] || 0) + 1;
+            });
+
+            const sortedOwners = Object.entries(ownerCounts).sort((a, b) => b[1] - a[1]);
+            const pieLabels = sortedOwners.map(e => e[0]);
+            const pieValues = sortedOwners.map(e => e[1]);
+            const pieColors = ['#1a5490', '#d4a012', '#2d6cb5', '#e17055', '#00b894', '#6c5ce7', '#fdcb6e'];
+
+            const pieCtx = document.getElementById('ovPieChart').getContext('2d');
+            if (ovPieChart) ovPieChart.destroy();
+            ovPieChart = new Chart(pieCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: pieLabels,
+                    datasets: [{
+                        data: pieValues,
+                        backgroundColor: pieColors.slice(0, pieLabels.length),
+                        borderColor: '#ffffff',
+                        borderWidth: 3,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: { padding: 20 },
+                    animation: { duration: 800, easing: 'easeOutQuart' },
+                    cutout: '50%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 12,
+                                boxHeight: 12,
+                                borderRadius: 4,
+                                useBorderRadius: true,
+                                color: '#555',
+                                font: { family: "'Prompt', sans-serif", size: 11, weight: '500' },
+                                padding: 14,
+                                generateLabels: function (chart) {
+                                    const data = chart.data;
+                                    const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                    return data.labels.map((label, i) => {
+                                        const value = data.datasets[0].data[i];
+                                        const pct = total > 0 ? Math.round(value * 100 / total) : 0;
+                                        return {
+                                            text: `${label}  ${value} คดี (${pct}%)`,
+                                            fillStyle: data.datasets[0].backgroundColor[i],
+                                            strokeStyle: data.datasets[0].borderColor,
+                                            lineWidth: 1,
+                                            index: i
+                                        };
+                                    });
+                                }
+                            }
+                        },
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'end',
+                            offset: 6,
+                            color: (ctx) => ctx.dataset.backgroundColor[ctx.dataIndex],
+                            font: { weight: '700', size: 12, family: "'Prompt', sans-serif" },
+                            formatter: (value, ctx) => {
+                                const sum = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                const p = Math.round(value * 100 / sum);
+                                return p > 0 ? p + '%' : '';
+                            }
+                        }
+                    }
                 }
             });
         }
